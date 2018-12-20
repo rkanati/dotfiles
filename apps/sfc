@@ -1,0 +1,4 @@
+#!/usr/bin/fish
+cd /wine-bottles/sfc/drive_c/sfc
+exec bottle sfc run -w "c:/sfc/sfc.exe"
+

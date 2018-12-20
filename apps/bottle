@@ -1,0 +1,230 @@
+#!/usr/bin/fish
+
+set -g BOTTLES_DIR_DEFAULT ~/.wine-bottles
+
+function execute
+  set -l new_argv
+  for a in $argv
+    set new_argv $new_argv (string trim $a | string escape)
+  end
+  eval $new_argv
+end
+
+function log
+  echo -s $argv >&2
+end
+
+set -g sgr_normal
+set -g sgr_bold
+set -g sgr_italic
+
+if isatty
+  set sgr_normal (set_color normal)
+  set sgr_bold   (set_color -o)
+  set sgr_italic (set_color -i)
+end
+
+function B
+  echo -s "$sgr_bold" $argv "$sgr_normal"
+end
+
+function I
+  echo -s "$sgr_italic" $argv "$sgr_normal"
+end
+
+function version
+  echo "0.0.1"
+end
+
+function usage
+  echo -s (B bottle)" "(version)" - manage Wine bottles"
+  echo
+
+  echo -s "Usage:"
+  echo -s \t (B bottle) (I " [-v|--verbose] which-bottle command...")
+  echo -s \t (B bottle) (I " {-h|--help}")
+  echo -s \t (B bottle) (I " {-V|--version}")
+  echo
+
+  echo -s \t(I which-bottle)" specifies a bottle to use for "(B \$WINEPREFIX)"."
+  echo -s \t"If it is a path, it is used directly. Otherwise, it is the name of"
+  echo -s \t"a directory under "(B \$BOTTLES_DIR)"."
+  echo -s \t (B \$BOTTLES_DIR)" defaults to ~/.wine-bottles if not set"
+  echo
+
+  echo -s "Commands:"
+  echo -s \t (B create) (I " [{-a|--winearch} arch]")
+  echo -s \t\t"Create a new bottle. If "(I arch)" is given, it will be used as "
+  echo -s \t\t(B \$WINEARCH)" for the new bottle."
+  echo
+
+  echo -s \t (B path)
+  echo -s \t\t"Print the computed "(B \$WINEPREFIX)"."
+  echo
+
+  echo -s \t (B configure)
+  echo -s \t\t"Run "(B winecfg)" in the bottle."
+  echo
+
+  echo -s \t (B run) (I " [-w|--win-like] program [args...]")
+  echo -s \t\t"Run a program in the bottle. If "(I -w)" or "(I --win-like)" is given,"
+  echo -s \t\t (I program)" is a Windows-ish path"
+  echo
+
+  echo -s \t (B install) (I " [-w|--win-like] msi")
+  echo -s \t\t"Run an installer."
+  echo
+
+  echo -s \t (B uninstall)
+  echo -s \t\t"Launch the uninstaller."
+  echo
+
+  echo -s \t (B rm) (I " [-fff|--force]")
+  echo -s \t\t"Delete the bottle. If "(I -fff)" or "(I --force)" is not given, prompt"
+  echo -s \t\t"for verification."
+  echo
+end
+
+# -h only works alone
+argparse --name bottle -s -x "h,v,V" "h/help" "v/verbose" "V/version" -- $argv
+or begin
+  usage >&2
+  exit 1
+end
+
+if test -n "$_flag_help"
+  usage
+  exit
+end
+
+if test -n "$_flag_version"
+  version
+  exit
+end
+
+set -l prefix $argv[1]
+set -e argv[1]
+if test -z "$prefix"
+  log "No prefix specified!"
+  exit 1
+end
+
+set -l command $argv[1]
+set -e argv[1]
+if test -z "$command"
+  log "No command given..."
+  exit 1
+end
+
+function make-path
+  set -l trimmed (string trim -rc'/' $argv[1])
+  set -e argv[1]
+  for seg in $argv
+    switch $seg
+      case "/*"
+        return 1
+      case "*"
+        set trimmed $trimmed (string trim -c'/' $seg)
+    end
+  end
+  string join '/' $trimmed
+end
+
+function bottle-path
+  set -g rel "$PWD"
+
+  if string match -qr "\w.*" "$argv"
+    if not set -q BOTTLES_DIR
+      set BOTTLES_DIR "$BOTTLES_DIR_DEFAULT"
+      log "BOTTLES_DIR not defined - using $BOTTLES_DIR"
+    else if not string match -q "/*" "$BOTTLES_DIR"
+      log "BOTTLES_DIR ($BOTTLES_DIR) is not an absolute path! Aborting."
+      exit 1
+    end
+    set rel "$BOTTLES_DIR"
+  end
+
+  make-path "$rel" "$argv"
+end
+
+set -gx WINEPREFIX (bottle-path "$prefix")
+or exit $status
+
+set -l bottlefile (make-path "$WINEPREFIX" ".bottle-arch")
+if not test -d "$WINEPREFIX" -a -f "$bottlefile"
+  log "$WINEPREFIX is not a valid bottle (.bottle-arch not found)"
+  exit 1
+end
+
+set -l bottlearch (cat "$bottlefile" | string trim)
+#or begin
+#  log "Error reading $bottlefile. Do you have permission to use this bottle?"
+#  exit 1
+#end
+
+if test -n "$bottlearch"
+  set -gx WINEARCH "$bottlearch"
+end
+
+function bottle-create
+  if test -e "$WINEPREFIX"
+    log "$WINEPREFIX already exists. Aborting."
+    exit 1
+  end
+
+  mkdir -p "$WINEPREFIX"
+  touch (make-path "$WINEPREFIX" ".bottle-arch")
+end
+
+function bottle-configure
+  winecfg
+end
+
+function bottle-info
+  echo -s "WINEPREFIX: '$WINEPREFIX'"
+  echo -s "WINEARCH:   '$WINEARCH'"
+end
+
+function bottle-run
+  argparse -N 1 -s "w/win-like" -- $argv
+  or exit $status
+
+  set -l command $argv[1]
+  set -e argv[1]
+
+  if test -n "$_flag_w"
+    set command (make-path "$WINEPREFIX" "dosdevices" "$command")
+    or begin
+      echo "-w specified, but "(I command)" is not a windows-ish path"
+      exit 1
+    end
+  end
+  execute $command $argv
+end
+
+function bottle-install
+  log TODO
+end
+
+function bottle-uninstall
+  log TODO
+end
+
+function bottle-rm
+  log TODO
+end
+
+switch $command
+  case "create";    bottle-create    $argv
+  case "configure"; bottle-configure $argv
+  case "path";      echo $WINEPREFIX
+  case "info";      bottle-info      $argv
+  case "run";       bottle-run       $argv
+  case "install";   bottle-install   $argv
+  case "uninstall"; bottle-uninstall $argv
+  case "rm";        bottle-rm        $argv
+  case "*"
+    log "Unknown command '"(B $command)"'"
+    exit 1
+end
+

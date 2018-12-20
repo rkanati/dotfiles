@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+bottle wotlk run -w c:/wotlk/Wow.exe
+

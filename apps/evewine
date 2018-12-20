@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+env WINEPREFIX=/wine-bottles/eve wine $argv
+

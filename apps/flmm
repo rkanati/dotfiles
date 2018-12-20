@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+exec bottle freelancer run -w "c:/FLMM2e/FLModManager.exe"
+

@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+git --git-dir ~/.dotfiles.git --work-tree ~ $argv
+

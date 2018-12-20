@@ -1,0 +1,19 @@
+#!/usr/bin/fish
+
+rsync \
+  --human-readable --itemize-changes --progress \
+  --recursive \
+  --times --modify-window=4 --update \
+  --whole-file \
+  --delete-before --delete-excluded --prune-empty-dirs \
+  -f="- /Archive/" \
+  -f="+ */" \
+  -f="+ *.mp3" \
+  -f="+ *.flac" \
+  -f="+ *.ogg" \
+  -f="+ *.jpg" \
+  -f="+ *.png" \
+  -f="- *" \
+  $argv \
+  ~/music/ /media/DELECTUS/Music/
+

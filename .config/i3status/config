@@ -1,0 +1,40 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+general {
+  colors = true
+  color_good = "#00c062"
+  color_degraded = "#a77f05"
+  color_bad = "#bf3d3d"
+  interval = 5
+}
+
+order += "wireless _first_"
+order += "tztime local"
+
+wireless _first_ {
+  format_up = ""
+  format_down = " off"
+}
+
+ethernet _first_ {
+  format_up = ""
+  format_down = " down"
+}
+
+battery 0 {
+  format = "%status %percentage %remaining %emptytime"
+  format_down = "none"
+  status_chr = ""
+  status_bat = ""
+  status_full = ""
+  low_threshold = 30
+  threshold_type = time
+  hide_seconds = true
+  integer_battery_capacity = true
+}
+
+tztime local {
+  Format = "%Y-%m-%d %a %H%M"
+}
+

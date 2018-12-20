@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+exec bottle deus-ex run -w "c:/DeusEx/System/deusex.exe"
+

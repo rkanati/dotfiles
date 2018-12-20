@@ -1,0 +1,13 @@
+#!/usr/bin/fish
+set -l term_pid (xdotool getwindowpid (xdotool getactivewindow))
+if [ $status -ne 0 ]; exec term $argv; end
+
+set -l shell_pid (pgrep -oP "$term_pid")
+if [ $status -ne 0 ]; exec term $argv; end
+
+set -l shell_cwd (readlink -e "/proc/"$shell_pid"/cwd")
+if [ $status -ne 0 ]; exec term $argv; end
+
+cd $shell_cwd
+exec term $argv
+

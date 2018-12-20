@@ -1,0 +1,9 @@
+#!/usr/bin/fish
+#set -l tempfile (mktemp --tmpdir --suffix=".ppm" rk-scrot-temp.XXXXXXXXXX)
+set -l tempfile (mktemp --tmpdir --suffix=".jpg" rk-scrot-temp.XXXXXXXXXX)
+/usr/bin/scrot -q 100 $tempfile $argv
+set -l outfile ~/pictures/screenshots/(date -Iseconds)".jpg" #".webp"
+#ffmpeg -i $tempfile -lossless 1 $outfile
+cp $tempfile $outfile
+rm $tempfile
+

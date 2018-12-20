@@ -1,0 +1,4 @@
+#!/usr/bin/fish
+cd "/home/rk/apps/Umineko/Umineko no Naku koro ni/[WH] Umineko English"
+bottle umineko run "./Umineko no Naku Koro ni.exe"
+

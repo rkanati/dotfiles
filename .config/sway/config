@@ -1,0 +1,164 @@
+
+set $mon_left  DVI-D-2
+set $mon_right HDMI-A-1
+
+output $mon_left {
+  res 1920x1080
+  pos 0 0
+  bg  ~/pictures/wallpaper/alena-aenami-dreamer-1k.jpg fill
+}
+
+output $mon_right {
+  res 1920x1080
+  pos 1920 0
+  bg  ~/pictures/wallpaper/alena-aenami-cold-1k.jpg fill
+}
+
+input * {
+  xkb_layout gb
+  xkb_model pc105
+  repeat_delay 500
+  repeat_rate  5
+}
+
+set $col_white  #fafbfc
+set $col_black  #2a373e
+set $col_dkgrey #5b686f
+set $col_active #ff4081
+set $col_alert  #ffc017
+
+client.focused          $col_active  $col_active  $col_black  $col_white $col_active
+client.focused_inactive $col_black   $col_black   $col_dkgrey $col_black $col_black
+client.unfocused        $col_black   $col_black   $col_dkgrey $col_black $col_black
+client.urgent           $col_alert   $col_alert   $col_white  $col_alert $col_alert
+
+set $mod  Mod4
+set $show Mod1
+
+floating_modifier $mod
+
+set $left  h
+set $down  j
+set $up    k
+set $right l
+
+font pango:Signika SemiBold 11
+
+set $border_width 3
+default_border          pixel $border_width
+default_floating_border pixel $border_width
+hide_edge_borders vertical
+
+bindsym $mod+b border normal $border_width
+bindsym $mod+n border pixel  $border_width
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+$up    move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+v           split toggle
+
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a     focus parent
+bindsym $mod+d     focus child
+
+bindsym $mod+Return exec term
+bindsym $mod+Shift+Return exec term -t "rk-i3-pop-up"
+for_window [title="^rk-i3-pop-up$"] floating enable
+
+bindsym $mod+semicolon exec app-menu
+
+bindsym $mod+control+n exec mpc volume -5
+bindsym $mod+control+m exec mpc volume +5
+bindsym $mod+control+i exec mpc play
+bindsym $mod+control+p exec mpc toggle
+bindsym $mod+control+u exec mpc stop
+bindsym $mod+control+k exec mpc prev
+bindsym $mod+control+j exec mpc next
+bindsym $mod+control+h exec mpc seek -10
+bindsym $mod+control+l exec mpc seek +10
+
+workspace 1  output $mon_left
+workspace 2  output $mon_left
+workspace 3  output $mon_left
+workspace 4  output $mon_left
+workspace 5  output $mon_left
+
+workspace 6  output $mon_right
+workspace 7  output $mon_right
+workspace 8  output $mon_right
+workspace 9  output $mon_right
+workspace 10 output $mon_right
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+exec swayidle \
+  timeout 300 'swaymsg "output * dpms off"' \
+  resume      'swaymsg "output * dpms on"'
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+bar {
+  status_command i3status
+  position top
+ #tray_output $mon_left
+  mode hide
+  modifier $show
+
+  colors {
+    background $col_black
+    statusline $col_white
+    separator  $col_black
+    focused_workspace  $col_black  $col_black  $col_active
+    active_workspace   $col_black  $col_black  $col_white
+    inactive_workspace $col_black  $col_black  $col_dkgrey
+    urgent_workspace   $col_alert  $col_alert  $col_black
+  }
+}
+
+include /etc/sway/config.d/*
+
+exec winitrc
+

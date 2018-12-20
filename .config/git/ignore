@@ -1,0 +1,15 @@
+# Editor guff
+*.swp
+*~
+
+# Build tool guff
+__pycache__/
+cabal.sandbox.config
+
+# Intermediates
+*.o
+*.so
+*.a
+*.hi
+gmon.out
+

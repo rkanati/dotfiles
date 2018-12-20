@@ -1,0 +1,4 @@
+vte-terminal, VteTerminal {
+  -GtkWidget-cursor-aspect-ratio: 0.1;
+}
+

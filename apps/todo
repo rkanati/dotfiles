@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+term -t "todo" -e nv documents/todo.md documents/kanji
+

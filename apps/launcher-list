@@ -1,0 +1,51 @@
+# format:
+# icon-char? ':' name ':' command?
+
+# Games
+#⌖   :Borderlands              :borderlands
+Δ   :DELTARUNE                :deltarune
+🕶   :Deus Ex                  :deusex
+🕶   :Shifter                  :shifter
+🐱  :Final Fantasy XIV Online :ffxiv
+🚀  :FLMM                     :flmm
+🚀  :Freelancer               :freelancer
+⛏   :Minecraft                :minecraft
+🎮  :PCSX2                    :pcsx2
+🎮  :Retroarch                :retroarch
+   :Steam                    :steam
+   :Steam (Win32)            :steam-win
+W   :WotLK                    :wotlk
+U   :Umineko                  :umineko
+
+# Utilities
+🗺   :GDMap                    :gdmap
+🔪  :GParted                  :gparted
+🎨  :GPick                    :gpick
+🔣  :GUCharmap                :gucharmap
+📊  :HTop                     :term -e htop
+🖼   :Nitrogen                 :nitrogen
+🔊  :PA VU Control            :pavucontrol
+📁  :Thunar                   :thunar
+
+# Applications
+🎴  :Anki                     :anki
+K   :KiCAD                    :kicad
+🎨  :GIMP                     :gimp
+🌍  :Google Earth             :google-earth
+🌊  :QBittorrent              :qbittorrent
+🐒  :Blender                  :blender
+🖽   :TilEd                    :tiled
+
+# Background
+   :Discord                  :discord
+   :Firefox                  :firefox
+🎵  :ncmpcpp                  :term -e ncmpcpp
+📌  :TODO                     :todo
+
+# System
+🔒  :Lock                     :loginctl lock-session
+🚪  :Log out                  :i3 exit
+⏻   :Power off                :poweroff
+   :Reboot                   :reboot
+🌙  :Suspend                  :systemctl suspend
+

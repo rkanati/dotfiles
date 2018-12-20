@@ -1,0 +1,6 @@
+#!/usr/bin/fish
+set -lx WINEDEBUG "-all"
+set -lx mesa_glthread "true"
+rm -rf ~/documents/"My Games/FINAL FANTASY XIV - A Realm Reborn/web"
+exec bottle ffxiv run -w "c:/SquareEnix/FINAL FANTASY XIV - A Realm Reborn/boot/ffxivboot.exe"
+
