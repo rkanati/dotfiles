@@ -34,6 +34,7 @@ filetype plugin indent on
 syntax on
 
 let g:rust_recommended_style = 0
+autocmd FileType rust setlocal tabstop=4
 
 let g:haskell_indent_disable          = 1
 let g:haskell_classic_highlighting    = 0
@@ -62,7 +63,7 @@ set foldmethod=manual nofoldenable
 set expandtab tabstop=2
 set shiftwidth=0 shiftround
 set cinoptions=l1
-set textwidth=78
+set textwidth=100
 set formatoptions-=t
 set virtualedit=block
 
@@ -111,4 +112,7 @@ nnoremap <Leader>n :noh<CR>
 " easy buffer switching
 nnoremap <Leader>j :bp<CR>
 nnoremap <Leader>k :bn<CR>
+
+" clipboard
+set clipboard=unnamedplus
 

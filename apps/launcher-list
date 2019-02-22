@@ -1,40 +1,38 @@
 # format:
 # icon-char? ':' name ':' command?
 
-# Games
-#⌖   :Borderlands              :borderlands
-Δ   :DELTARUNE                :deltarune
-🕶   :Deus Ex                  :deusex
-🕶   :Shifter                  :shifter
-🐱  :Final Fantasy XIV Online :ffxiv
-🚀  :FLMM                     :flmm
-🚀  :Freelancer               :freelancer
-⛏   :Minecraft                :minecraft
-🎮  :PCSX2                    :pcsx2
-🎮  :Retroarch                :retroarch
-   :Steam                    :steam
-   :Steam (Win32)            :steam-win
-W   :WotLK                    :wotlk
-U   :Umineko                  :umineko
-
 # Utilities
-🗺   :GDMap                    :gdmap
 🔪  :GParted                  :gparted
-🎨  :GPick                    :gpick
 🔣  :GUCharmap                :gucharmap
 📊  :HTop                     :term -e htop
-🖼   :Nitrogen                 :nitrogen
 🔊  :PA VU Control            :pavucontrol
 📁  :Thunar                   :thunar
+🔧  :DConf Editor             :dconf-editor
 
 # Applications
 🎴  :Anki                     :anki
 K   :KiCAD                    :kicad
 🎨  :GIMP                     :gimp
+🗔   :Glade                    :glade
 🌍  :Google Earth             :google-earth
 🌊  :QBittorrent              :qbittorrent
 🐒  :Blender                  :blender
 🖽   :TilEd                    :tiled
+B   :blcmm                    :blcmm
+
+# Games
+Δ   :DELTARUNE                :deltarune
+🕶    :Deus Ex                  :deusex
+🕶    :Shifter                  :shifter
+🚀  :FLMM                     :flmm
+🚀  :Freelancer               :freelancer
+⛏   :Minecraft                :minecraft
+🎮  :Retroarch                :retroarch
+   :Steam                    :steam
+W   :WotLK                    :wotlk
+U   :Umineko                  :umineko
+🀄  :Mahjong                  :gnome-mahjongg
+🂡   :Solitaire                :sol
 
 # Background
    :Discord                  :discord
@@ -44,7 +42,7 @@ K   :KiCAD                    :kicad
 
 # System
 🔒  :Lock                     :loginctl lock-session
-🚪  :Log out                  :i3 exit
+🚪  :Log out                  :end-session
 ⏻   :Power off                :poweroff
    :Reboot                   :reboot
 🌙  :Suspend                  :systemctl suspend

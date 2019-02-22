@@ -1,40 +1,54 @@
 
+# monitors -------------------------------------------------------------------
 set $mon_left  DVI-D-2
 set $mon_right HDMI-A-1
 
 output $mon_left {
   res 1920x1080
   pos 0 0
-  bg  ~/pictures/wallpaper/alena-aenami-dreamer-1k.jpg fill
+  bg  ~/pictures/wallpaper/aenami/wallhaven-476622.png fill
 }
 
 output $mon_right {
   res 1920x1080
   pos 1920 0
-  bg  ~/pictures/wallpaper/alena-aenami-cold-1k.jpg fill
+  bg  ~/pictures/wallpaper/aenami/alena-aenami-003-1.jpg fill
 }
 
+# inputs ---------------------------------------------------------------------
 input * {
   xkb_layout gb
   xkb_model pc105
   repeat_delay 500
-  repeat_rate  5
+  repeat_rate  25
 }
 
-set $col_white  #fafbfc
-set $col_black  #2a373e
-set $col_dkgrey #5b686f
-set $col_active #ff4081
-set $col_alert  #ffc017
+# appearance -----------------------------------------------------------------
+set $white  #fafbfc
+set $black  #2a373e
+set $dkgrey #5b686f
+set $pink   #ff4081
+set $yellow #ffc017
 
-client.focused          $col_active  $col_active  $col_black  $col_white $col_active
-client.focused_inactive $col_black   $col_black   $col_dkgrey $col_black $col_black
-client.unfocused        $col_black   $col_black   $col_dkgrey $col_black $col_black
-client.urgent           $col_alert   $col_alert   $col_white  $col_alert $col_alert
+# class                 border  background  text    indicator child_border
+client.focused          $pink   $black      $white  $white    $pink
+client.focused_inactive $black  $black      $dkgrey $black    $black
+client.unfocused        $black  $black      $dkgrey $black    $black
+client.urgent           $yellow $yellow     $white  $yellow   $yellow
 
+font pango:Signika Regular 13
+
+set $border_width 2
+default_border          pixel $border_width
+default_floating_border pixel $border_width
+hide_edge_borders vertical
+
+gaps inner 8
+gaps outer 8
+
+# basic controls -------------------------------------------------------------
 set $mod  Mod4
 set $show Mod1
-
 floating_modifier $mod
 
 set $left  h
@@ -42,15 +56,7 @@ set $down  j
 set $up    k
 set $right l
 
-font pango:Signika SemiBold 11
-
-set $border_width 3
-default_border          pixel $border_width
-default_floating_border pixel $border_width
-hide_edge_borders vertical
-
-bindsym $mod+b border normal $border_width
-bindsym $mod+n border pixel  $border_width
+bindsym $mod+b border toggle
 
 bindsym $mod+Shift+q kill
 
@@ -67,14 +73,18 @@ bindsym $mod+Shift+$right move right
 bindsym $mod+f           fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+v           split toggle
+for_window [floating] layout default
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a     focus parent
 bindsym $mod+d     focus child
 
-bindsym $mod+Return exec term
-bindsym $mod+Shift+Return exec term -t "rk-i3-pop-up"
-for_window [title="^rk-i3-pop-up$"] floating enable
+bindsym $mod+Return       exec term
+bindsym $mod+Shift+Return exec term --class "rk-pop-up"
+for_window [app_id="rk-pop-up"] floating enable
+
+bindsym --release $mod+s         exec rk-screencap-select
+bindsym --release $mod+Shift+s   exec rk-screencap
 
 bindsym $mod+semicolon exec app-menu
 
@@ -88,6 +98,7 @@ bindsym $mod+control+j exec mpc next
 bindsym $mod+control+h exec mpc seek -10
 bindsym $mod+control+l exec mpc seek +10
 
+# workspaces -----------------------------------------------------------------
 workspace 1  output $mon_left
 workspace 2  output $mon_left
 workspace 3  output $mon_left
@@ -122,43 +133,37 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-exec swayidle \
-  timeout 300 'swaymsg "output * dpms off"' \
-  resume      'swaymsg "output * dpms on"'
+# assignments ----------------------------------------------------------------
+assign [class="^discord$"] 10
+assign [title="^todo$"] 4
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
+# top bar --------------------------------------------------------------------
 bar {
-  status_command i3status
+  swaybar_command waybar
+ #status_command i3status
   position top
- #tray_output $mon_left
-  mode hide
-  modifier $show
-
-  colors {
-    background $col_black
-    statusline $col_white
-    separator  $col_black
-    focused_workspace  $col_black  $col_black  $col_active
-    active_workspace   $col_black  $col_black  $col_white
-    inactive_workspace $col_black  $col_black  $col_dkgrey
-    urgent_workspace   $col_alert  $col_alert  $col_black
-  }
+  tray_output $mon_left
+ #mode hide
+ #modifier $show
+ #status_padding 0
+ #
+ #colors {
+ #  background $black
+ #  statusline $white
+ #  separator  $black
+ #  focused_workspace  $black  $black  $pink
+ #  active_workspace   $black  $black  $white
+ #  inactive_workspace $black  $black  $dkgrey
+ #  urgent_workspace   $yellow $yellow $black
+ #}
 }
 
 include /etc/sway/config.d/*
+
+# autoexec -------------------------------------------------------------------
+# exec swayidle \
+#   timeout 300 'swaymsg "output * dpms off"' \
+#   resume      'swaymsg "output * dpms on"'
 
 exec winitrc
 

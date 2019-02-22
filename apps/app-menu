@@ -1,55 +1,13 @@
 #!/usr/bin/fish
-set -l listfile ~/apps/launcher-list
+set -g lock_dir /run/user/(id -u)/app-menu.lock.d
 
-function log
-  echo $argv 1>&2
-end
-
-function menu_command
-  dmenu \
-    -p "◇"\t \
-    -matching fuzzy \
-    -i \
-    -sort \
-    -sync \
-    $argv
-end
-
-function extract_lines
-  grep -v "^#\|^\s*\$" $argv
-end
-
-# strip parameters after ':'
-set -l choice \
-  ( cat $listfile \
-  | extract_lines \
-  | cut -d":" -f"-2" \
-  | sed "s/\s*:\s*/\t/g" \
-  | menu_command \
-  | cut -f2 \
-  )
-if [ $status -ne 0 -o -z "$choice" ]
+if mkdir "$lock_dir"
+  function cleanup -p %self
+    rm -rf "$lock_dir"
+  end
+  echo %self > "$lock_dir/pid"
+  term --class rk-pop-up -d 80 20 -e app-menu-term
+else
   exit 1
 end
-
-log "choice:  "$choice
-
-# find the line in the list
-set line (grep ":\s*$choice\s*:" $listfile | head -n 1)
-log "line:    "$line
-
-if [ -z "$line" -o $status -ne 0 ]
-  # not in the list? must be an explicit command
-  set cmd $choice
-else
-  # try for a command after ':'
-  set cmd (echo $line | cut -d":" -f"3-" -s)
-  if [ -z "$cmd" ]
-    # no ':'? use the name, with any icon stripped off
-    set cmd (echo $line | cut -d":" -f2) # sed "s/^[^\s]\s\+//")
-  end
-end
-
-log "command: "$cmd
-sh -c "exec $cmd" &; disown
 

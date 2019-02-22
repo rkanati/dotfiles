@@ -14,7 +14,7 @@ function fish_prompt
 
   # pwd
 # add_seg (set_color bryellow; echo -n $PWD | sed "s#^$HOME#~#")
-  add_seg (set_color -o; echo -n $PWD | sed "s#^$HOME#~#")
+  add_seg (set_color -o; homeify $PWD)
 
   # git at the end
   set -l branch (git symbolic-ref --short HEAD ^/dev/null)

@@ -1,6 +1,7 @@
 [User]
   email = raech.kanati@gmail.com
   name = Rachel K
+  signingkey = 6E200070FB3A92E3
 
 [push]
   default = simple

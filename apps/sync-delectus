@@ -13,7 +13,8 @@ rsync \
   -f="+ *.ogg" \
   -f="+ *.jpg" \
   -f="+ *.png" \
+  -f="+ *.opus" \
   -f="- *" \
   $argv \
-  ~/music/ /media/DELECTUS/Music/
+  ~/music/ /media/rk/DELECTUS/Music/
 
