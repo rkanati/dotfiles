@@ -24,6 +24,7 @@ else
   set cmd $cmd
 end
 
+cd
 status job-control full
 eval $cmd \& \; disown
 
