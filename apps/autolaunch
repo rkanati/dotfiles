@@ -3,5 +3,6 @@
 pasystray &
 discord &
 todo &
-udiskie --appindicator &
+#udiskie --appindicator &
+thunar --daemon &
 
