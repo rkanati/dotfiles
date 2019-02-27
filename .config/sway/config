@@ -137,6 +137,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 assign [class="^discord$"] 10
 assign [title="^todo$"] 4
 
+for_window [app_id="pavucontrol"] floating enable
+
 # top bar --------------------------------------------------------------------
 bar {
   swaybar_command waybar
