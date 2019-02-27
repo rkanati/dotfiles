@@ -1,13 +1,58 @@
-#!/usr/bin/fish
-set -g lock_dir /run/user/(id -u)/app-menu.lock.d
+#!/usr/bin/env dash
+# vim: ft=sh:
+LOCK_DIR="/run/user/$(id -u)/app-menu.lock.d"
+FIFO="${LOCK_DIR}/fifo"
+TAB=$(printf '\t')
 
-if mkdir "$lock_dir"
-  function cleanup -p %self
-    rm -rf "$lock_dir"
-  end
-  echo %self > "$lock_dir/pid"
-  term --class rk-pop-up -d 80 20 -e app-menu-term
+cleanup() {
+  rm -rf "${LOCK_DIR}"
+}
+
+menu_command() {
+  fzf --no-sort --no-hscroll --cycle --reverse --prompt=" ◇${TAB}" --tabstop=4 \
+      --delimiter="${TAB}" --nth=2 --with-nth=1..2 \
+      --print-query
+}
+
+choose() {
+  grep -v "^#\|^\s*\$"   \
+  | sed "s/\s*:\s*/\t/g" \
+  | menu_command
+}
+
+if test "$1" = "inner"; then
+  CHOICE=$(choose < ~/apps/launcher-list)
+  CHOOSE_STATUS="$?"
+
+  QUERY=$(echo "${CHOICE}" | head -n 1)
+  COMMAND=$(echo "${CHOICE}" | tail -n 1 | cut -f3)
+
+  {
+    if (test "$CHOOSE_STATUS" -eq 1 && test -n "$CHOICE"); then
+      printf "%s\n" "${QUERY}" # no match - run query string as command
+    elif test "$CHOOSE_STATUS" -ne 0; then
+      echo # error
+    else
+      printf "%s\n" "${COMMAND}"
+    fi
+  } > "${FIFO}"
+
+elif mkdir "$LOCK_DIR"; then
+  trap cleanup INT
+
+  mkfifo "${FIFO}"
+  term --class rk-pop-up -d 80 20 -e app-menu "inner" &
+
+  echo "waiting"
+  read COMMAND < "${FIFO}"
+  COMMAND=${COMMAND}
+
+  cleanup
+
+  cd
+  { nohup ${COMMAND} </dev/null >/dev/null 2>&1 & } &
+
 else
   exit 1
-end
+fi
 
