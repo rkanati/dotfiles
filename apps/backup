@@ -1,6 +1,20 @@
 #!/bin/sh
-borg -p create --stats --verbose --one-file-system \
-"::{user}@{hostname}-{utcnow}" \
-apps/ comics/ .config/ disc-images/ documents/ film/ .gnupg/ misc/ music/ .password-store/ \
-pictures/ projects/ shares/ .ssh/
+# vim: lbr:
+
+header() {
+  echo "Backing up: "
+  while test "$#" -ne 0; do
+    echo "$1"
+    shift
+  done
+  echo
+}
+
+go() {
+  header "$@"
+  borg -p create --stats --verbose --one-file-system "::{user}@{hostname}-{utcnow}" "$@"
+}
+
+DIRS="apps/ comics/ .config/ disc-images/ documents/ .gnupg/ misc/ .password-store/ pictures/ projects/ shares/ .ssh/"
+go $DIRS "$@"
 
