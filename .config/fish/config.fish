@@ -8,3 +8,5 @@
 #  end
 #end
 
+umask 027
+

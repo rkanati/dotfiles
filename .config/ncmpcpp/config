@@ -1,3 +1,5 @@
+ncmpcpp_directory = ~/.cache/ncmpcpp
+lyrics_directory = ~/.cache/lyrics
 media_library_sort_by_mtime = yes
 autocenter_mode = yes
 ignore_leading_the = yes

@@ -77,10 +77,10 @@ set directory=~/.cache/nvim/swap//
 set autoread autowrite
 
 " my shell
-set shell=fish
+" set shell=fish
 
 " use ESC to get out of terminal windows
-tnoremap <Esc> <C-\><C-n>
+tnoremap <C-q> <C-\><C-n>
 
 " digraph ++ → ⧺
 dig ++ 10746
@@ -90,7 +90,7 @@ set colorcolumn=+1
 hi ColorColumn cterm=bold ctermfg=Red ctermbg=233
 
 " convenient save-all-quit
-nnoremap ZX :xa<CR>
+nnoremap ZX :xa<cr>
 
 " ZQ is possibly hazardous
 nnoremap ZQ <nop>
@@ -103,16 +103,61 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-q> <C-w>q
 nnoremap <C-s> <nop>
 
+" clipboard
+set clipboard=unnamedplus
+
 " custom commands
 let mapleader="\\"
 
 " nohlsearch shortcut
-nnoremap <Leader>n :noh<CR>
+nnoremap <leader>n :noh<cr>
 
 " easy buffer switching
-nnoremap <Leader>j :bp<CR>
-nnoremap <Leader>k :bn<CR>
+nnoremap <leader>j :bp<cr>
+nnoremap <leader>k :bn<cr>
 
-" clipboard
-set clipboard=unnamedplus
+" fuzzy-find
+" XXX absolute fucking disaster - /dev/tty is a no-no in neovim, and termopen et al. is utter
+" garbage
+"
+" autocmd TermOpen * startinsert
+"
+" function! HSCommand(src_command, hs_args, first_command, rest_command)
+"   let output = []
+"   function! OnStdout(job, data, stream) closure
+"     let output += a:data
+"   endfunction
+"
+"   function! OnDone(job, code, event) closure
+"     let l:first = 1
+"     for l:item in output
+"       if first
+"         exec a:first_command . " " . l:item
+"         let l:first = 0
+"       else
+"         exec a:rest_command . " " . l:item
+"       endif
+"     endfor
+"   endfunction
+"
+"   let l:opts = {
+" \   'on_stdout': function('OnStdout'),
+" \   'stdout_buffered': 1,
+" \   'on_exit': function('OnDone')
+" \ }
+"   enew
+"   let l:job = termopen(a:src_command . ' | hs ' . a:hs_args, l:opts)
+"   if l:job <= 0
+"     echo 'Error running heatseeker:'
+"     return
+"   end
+" endfunction
+"
+" function! HSOpen()
+"   call HSCommand("find * -type f", "", "e", "badd")
+" endfunction
+"
+" nnoremap <leader>o :call HSOpen()<cr>
+
+nnoremap <leader>o :FZF<cr>
 
