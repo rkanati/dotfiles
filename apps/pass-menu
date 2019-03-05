@@ -1,0 +1,12 @@
+#!/usr/bin/env dash
+# vim: ft=sh:
+test -d "$PASSWORD_STORE_DIR" \
+  && cd "$PASSWORD_STORE_DIR" \
+  || cd ~/.password-store
+
+CHOICE=$( \
+    find . -path "*/\.*" -prune -o -type f -print \
+  | sed "s#^\./##; s/\.gpg\$//;" \
+  | fzf --no-hscroll --cycle --reverse --prompt="🔑 " \
+) && pass "${CHOICE}" $@
+

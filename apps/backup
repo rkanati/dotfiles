@@ -15,6 +15,6 @@ go() {
   borg -p create --stats --verbose --one-file-system "::{user}@{hostname}-{utcnow}" "$@"
 }
 
-DIRS="apps/ comics/ .config/ disc-images/ documents/ .gnupg/ misc/ .password-store/ pictures/ projects/ shares/ .ssh/"
+DIRS="apps/ comics/ .config/ documents/ .gnupg/ misc/ .password-store/ pictures/ projects/ shares/ .ssh/"
 go $DIRS "$@"
 
