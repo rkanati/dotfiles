@@ -49,6 +49,6 @@ function fish_prompt
   set -e prompt_segs
 
   # reset cursor, ugh
-  echo -ens "\e[ q" "\e[?25h" # reset style; show
+  echo -ens "\e[q" "\e[?25h" # reset style; show
 end
 
