@@ -1,7 +1,7 @@
 [User]
   email = raech.kanati@gmail.com
   name = Rachel K
-  signingkey = 6E200070FB3A92E3
+  signingKey = FED8B0E5BB5930E5CCC6E21A6E200070FB3A92E3
 
 [push]
   default = simple
@@ -27,4 +27,10 @@
 
 [core]
   askPass =
+
+[rebase]
+  autoSquash = true
+
+[commit]
+  gpgSign = true
 

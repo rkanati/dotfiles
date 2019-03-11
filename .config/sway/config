@@ -94,7 +94,7 @@ bindsym --release $mod+Shift+s   exec rk-screencap
 
 bindsym $mod+p exec pass-popup
 
-bindsym $mod+semicolon exec term-tool app-menu
+bindsym $mod+semicolon exec term-tool app-menu-2
 
 bindsym $mod+control+n exec mpc volume -5
 bindsym $mod+control+m exec mpc volume +5

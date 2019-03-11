@@ -1,9 +1,0 @@
-#!/usr/bin/fish
-
-#paplay --property=media.role=event ~/apps/start.wav &
-
-env allow_rgb10_configs=false compton &
-nitrogen --restore &
-
-autolaunch &
-

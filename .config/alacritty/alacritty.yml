@@ -1,6 +1,6 @@
-env:
+# env:
   # If this property is not set, alacritty will set it to xterm-256color.
-  TERM: xterm-256color
+  # TERM: xterm-256color
 
 window:
   # (changes require restart)

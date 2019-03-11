@@ -1,0 +1,46 @@
+# format:
+# icon-char? ':' name ':' command?
+
+# Utilities
+gparted
+gucharmap
+term -e htop
+pavucontrol
+thunar
+dconf-editor
+
+# Applications
+anki
+gimp
+glade
+google-earth
+qbittorrent
+blender
+tiled
+blcmm
+
+# Games
+deltarune
+deusex
+shifter
+flmm
+freelancer
+minecraft
+retroarch
+steam
+wotlk
+umineko
+gnome-mahjongg
+sol
+
+# Background
+discord
+firefox
+term -e ncmpcpp
+todo
+
+# System
+end-session
+poweroff
+reboot
+

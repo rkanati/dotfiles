@@ -11,14 +11,15 @@ cleanup() {
   rm -rf "${LOCK_DIR}"
 }
 
-if mkdir "${LOCK_DIR}"; then
-  trap cleanup INT
+mkdir "${LOCK_DIR}" || exit 1
 
-  if mkfifo "${FIFO}"; then
-    term ${TERMOPTS} -e ${THIS_SH} -c "$* >${FIFO} 2>/dev/tty <&-" &
-    cat "${FIFO}"
-  fi
+trap cleanup INT
+trap cleanup EXIT
 
-  cleanup
-fi
+mkfifo "${FIFO}" || exit 1
+
+term ${TERMOPTS} -e ${THIS_SH} -c "$* >${FIFO} 2>/dev/tty <&-" &
+TERM_JOB=$!
+cat "${FIFO}" &
+wait $TERM_JOB
 

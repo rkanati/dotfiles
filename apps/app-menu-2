@@ -1,0 +1,20 @@
+#!/usr/bin/env dash
+# vim: ft=sh:
+THIS_SH=$(head -1 "$0" | sed "s/^#!//")
+
+menu_command() {
+  hs
+}
+
+choose() {
+  grep -v "^#\|^\s*\$"   \
+  | sed "s/\s*:\s*/\t/g" \
+  | menu_command
+}
+
+if COMMAND=$(choose < ~/apps/launcher-list-2); then
+  nohup $THIS_SH -c "$COMMAND &" <&- >/dev/null 2>/dev/null
+else
+  exit 1
+fi
+

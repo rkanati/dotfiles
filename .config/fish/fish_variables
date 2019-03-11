@@ -9,7 +9,7 @@ SETUVAR --export LESSHISTFILE:\x2d
 SETUVAR --export QT_QPA_PLATFORM:wayland
 SETUVAR --export QT_WAYLAND_DISABLE_WINDOWDECORATION:1
 SETUVAR --export VISUAL:nvim
-SETUVAR --export WINEPREFIX:/wine\x2dbottles/default
+SETUVAR --export WINEPREFIX:/dev/null
 SETUVAR --export _JAVA_AWT_WM_NONREPARENTING:1
 SETUVAR __fish_classic_git_prompt_initialized:\x1d
 SETUVAR __fish_init_1_50_0:\x1d
