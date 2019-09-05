@@ -142,31 +142,30 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # assignments ----------------------------------------------------------------
-assign [class="^discord$"] 10
+assign [class="discord"] 10
 
-for_window [app_id="todo"] move to scratchpad
+# for_window [app_id="todo"] move to scratchpad
 
 for_window [app_id="pavucontrol"] floating enable
 
 # top bar --------------------------------------------------------------------
 bar {
   swaybar_command waybar
- #status_command i3status
-  position top
-  tray_output $mon_left
- #mode hide
- #modifier $show
- #status_padding 0
- #
- #colors {
- #  background $black
- #  statusline $white
- #  separator  $black
- #  focused_workspace  $black  $black  $pink
- #  active_workspace   $black  $black  $white
- #  inactive_workspace $black  $black  $dkgrey
- #  urgent_workspace   $yellow $yellow $black
- #}
+# status_command i3status
+# position top
+# tray_output $mon_left
+# modifier $show
+# status_padding 0
+#
+# colors {
+#   background $black
+#   statusline $white
+#   separator  $black
+#   focused_workspace  $black  $black  $pink
+#   active_workspace   $black  $black  $white
+#   inactive_workspace $black  $black  $dkgrey
+#   urgent_workspace   $yellow $yellow $black
+# }
 }
 
 include /etc/sway/config.d/*

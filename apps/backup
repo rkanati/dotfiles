@@ -1,6 +1,8 @@
 #!/bin/sh
 # vim: lbr:
 
+cd
+
 header() {
   echo "Backing up: "
   while test "$#" -ne 0; do
@@ -12,7 +14,8 @@ header() {
 
 go() {
   header "$@"
-  borg -p create --stats --verbose --one-file-system "::{user}@{hostname}-{utcnow}" "$@"
+  borg -p create --stats --verbose --one-file-system "::{user}@{hostname}-{utcnow}" "$@" \
+    --exclude ".config/discord/Cache"
 }
 
 DIRS="apps/ comics/ .config/ documents/ .gnupg/ misc/ .password-store/ pictures/ projects/ shares/ .ssh/"

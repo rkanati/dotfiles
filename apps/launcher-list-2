@@ -2,6 +2,7 @@
 # icon-char? ':' name ':' command?
 
 # Utilities
+ghex
 gparted
 gucharmap
 term -e htop
@@ -14,6 +15,7 @@ anki
 gimp
 glade
 google-earth
+kicad
 qbittorrent
 blender
 tiled

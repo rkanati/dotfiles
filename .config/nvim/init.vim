@@ -92,8 +92,9 @@ hi ColorColumn cterm=bold ctermfg=Red ctermbg=233
 " convenient save-all-quit
 nnoremap ZX :xa<cr>
 
-" ZQ is possibly hazardous
+" ZQ and ZZ are possibly hazardous
 nnoremap ZQ <nop>
+nnoremap ZZ <nop>
 
 " use CTRL-hjkl for window navigation
 nnoremap <C-h> <C-w>h

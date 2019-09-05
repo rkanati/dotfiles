@@ -1,4 +1,4 @@
 #!/usr/bin/fish
-systemctl --user start mako
+systemctl --user start mako redshift
 autolaunch &
 

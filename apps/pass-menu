@@ -8,5 +8,5 @@ CHOICE=$( \
     find . -path "*/\.*" -prune -o -type f -print \
   | sed "s#^\./##; s/\.gpg\$//;" \
   | fzf --no-hscroll --cycle --reverse --prompt="🔑 " \
-) && pass "${CHOICE}" $@
+) && pass "${CHOICE}" $@ | head -1
 
