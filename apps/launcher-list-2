@@ -2,6 +2,7 @@
 # icon-char? ':' name ':' command?
 
 # Utilities
+gdmap
 ghex
 gparted
 gucharmap
@@ -24,16 +25,17 @@ blcmm
 # Games
 deltarune
 deusex
-shifter
 flmm
 freelancer
-minecraft
-retroarch
-steam
-wotlk
-umineko
 gnome-mahjongg
+minecraft
+quadrapassel
+retroarch
+shifter
 sol
+steam
+umineko
+wotlk
 
 # Background
 discord

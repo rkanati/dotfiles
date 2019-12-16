@@ -11,6 +11,7 @@ lines_scrolled = 5
 user_interface = alternative
 message_delay_time = 1
 volume_change_step = 5
+show_hidden_files_in_local_browser = no
 
 # Appearance
 display_bitrate = yes

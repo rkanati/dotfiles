@@ -3,6 +3,10 @@
 set $mon_left  DVI-D-2
 set $mon_right HDMI-A-1
 
+output * {
+# max_render_time 2
+}
+
 output $mon_left {
   res 1920x1080
   pos 0 0
@@ -19,7 +23,7 @@ output $mon_right {
 input * {
   xkb_layout gb
   xkb_model pc105
-  repeat_delay 400
+  repeat_delay 250
   repeat_rate  25
 }
 
@@ -31,12 +35,12 @@ set $pink   #ff4081
 set $yellow #ffc017
 
 # class                 border  background  text    indicator child_border
-client.focused          $pink   $black      $white  $white    $pink
+client.focused          $pink   $pink       $white  $white    $pink
 client.focused_inactive $black  $black      $dkgrey $black    $black
 client.unfocused        $black  $black      $dkgrey $black    $black
 client.urgent           $yellow $yellow     $white  $yellow   $yellow
 
-font pango:Signika Regular 13
+font pango:Signika Regular 11
 
 set $border_width 2
 default_border          pixel $border_width
@@ -46,10 +50,21 @@ hide_edge_borders vertical
 gaps inner 8
 gaps outer 8
 
+titlebar_border_thickness 0
+title_align center
+
+focus_on_window_activation urgent
+
 # basic controls -------------------------------------------------------------
 set $mod  Mod4
-set $show Mod1
 floating_modifier $mod
+
+# hideous workaround to prevent apps from seeing partial combos
+bindsym Super_L              nop
+bindsym $mod+Shift_L         nop
+bindsym $mod+Control_L       nop
+bindsym $mod+Shift+Control_L nop
+bindsym $mod+control+Shift_L nop
 
 set $left  h
 set $down  j
@@ -58,8 +73,11 @@ set $right l
 
 bindsym $mod+b border toggle
 
-bindsym $mod+q       -
-bindsym $mod+Shift+q kill
+bindsym           $mod+q       nop
+bindsym           $mod+Shift+q nop
+bindsym --release $mod+Shift+q kill
+
+focus_wrapping no
 
 bindsym $mod+$left  focus left
 bindsym $mod+$down  focus down
@@ -89,7 +107,9 @@ bindsym $mod+Return       exec term
 bindsym $mod+Shift+Return exec term --class "rk-pop-up"
 for_window [app_id="rk-pop-up"] floating enable
 
+bindsym           $mod+s         nop
 bindsym --release $mod+s         exec rk-screencap-select
+bindsym           $mod+Shift+s   nop
 bindsym --release $mod+Shift+s   exec rk-screencap
 
 bindsym $mod+p exec pass-popup
@@ -105,6 +125,18 @@ bindsym $mod+control+k exec mpc prev
 bindsym $mod+control+j exec mpc next
 bindsym $mod+control+h exec mpc seek -10
 bindsym $mod+control+l exec mpc seek +10
+
+set $mrt_notify notify-send -t 5000 max_render_time
+bindsym $mod+control+Shift+0 max_render_time off; exec $mrt_notify off
+bindsym $mod+control+Shift+1 max_render_time 1;   exec $mrt_notify 1
+bindsym $mod+control+Shift+2 max_render_time 2;   exec $mrt_notify 2
+bindsym $mod+control+Shift+3 max_render_time 3;   exec $mrt_notify 3
+bindsym $mod+control+Shift+4 max_render_time 4;   exec $mrt_notify 4
+bindsym $mod+control+Shift+5 max_render_time 5;   exec $mrt_notify 5
+bindsym $mod+control+Shift+6 max_render_time 6;   exec $mrt_notify 6
+bindsym $mod+control+Shift+7 max_render_time 7;   exec $mrt_notify 7
+bindsym $mod+control+Shift+8 max_render_time 8;   exec $mrt_notify 8
+bindsym $mod+control+Shift+9 max_render_time 9;   exec $mrt_notify 9
 
 # workspaces -----------------------------------------------------------------
 workspace 1  output $mon_left
@@ -144,28 +176,25 @@ bindsym $mod+Shift+0 move container to workspace 10
 # assignments ----------------------------------------------------------------
 assign [class="discord"] 10
 
-# for_window [app_id="todo"] move to scratchpad
+assign [app_id="todo"] 1
 
 for_window [app_id="pavucontrol"] floating enable
+
+# latency control ------------------------------------------------------------
+for_window [title="^.*$"] max_render_time 2
+
+for_window [class="steam_app_49520"] max_render_time 1
+for_window [title="^Borderlands 2"]  max_render_time 1
+
+for_window [class="^steam_app_"] max_render_time 1
+
+for_window [app_id="mpv"] max_render_time 1
+
+for_window [class="firefox"] max_render_time 4
 
 # top bar --------------------------------------------------------------------
 bar {
   swaybar_command waybar
-# status_command i3status
-# position top
-# tray_output $mon_left
-# modifier $show
-# status_padding 0
-#
-# colors {
-#   background $black
-#   statusline $white
-#   separator  $black
-#   focused_workspace  $black  $black  $pink
-#   active_workspace   $black  $black  $white
-#   inactive_workspace $black  $black  $dkgrey
-#   urgent_workspace   $yellow $yellow $black
-# }
 }
 
 include /etc/sway/config.d/*
@@ -174,6 +203,8 @@ include /etc/sway/config.d/*
 # exec swayidle \
 #   timeout 300 'swaymsg "output * dpms off"' \
 #   resume      'swaymsg "output * dpms on"'
+
+#xwayland force
 
 exec winitrc
 

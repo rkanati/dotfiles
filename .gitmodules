@@ -34,3 +34,6 @@
 [submodule ".config/nvim/bundle/vim-better-whitespace"]
 	path = .config/nvim/bundle/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace.git
+[submodule ".config/nvim/bundle/LanguageClient-neovim"]
+	path = .config/nvim/bundle/LanguageClient-neovim
+	url = https://github.com/autozimu/LanguageClient-neovim

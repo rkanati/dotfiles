@@ -1,3 +1,7 @@
 #!/usr/bin/fish
-grim $argv ~/pictures/screenshots/(date -Iseconds).png
+set -l screencap_dir ~/pictures/screenshots
+set -l screencap_file (date -Iseconds).png
+set -l screencap_path $screencap_dir/$screencap_file
+grim $argv $screencap_path
+notify-send -t 5000 Screencap "Saved $screencap_file"
 

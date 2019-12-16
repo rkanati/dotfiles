@@ -1,3 +1,0 @@
-#!/usr/bin/fish
-bottle freelancer run -w "c:/Freelancer/exe/freelancer.exe"
-

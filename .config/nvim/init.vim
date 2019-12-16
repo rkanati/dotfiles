@@ -45,6 +45,14 @@ let g:haskell_enable_typeroles        = 1
 let g:haskell_enable_static_pointers  = 1
 let g:haskell_backpack                = 1
 
+" language server stuff
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'beta', 'rls'],
+    \ }
+
+nnoremap <silent> <C-i> :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <C-p> :call LanguageClient_contextMenu()<CR>
+
 " ui config
 set laststatus=2
 set showcmd
@@ -55,12 +63,13 @@ set cursorline
 set switchbuf=usetab
 set shortmess+=aAIs
 set splitright
+set signcolumn=yes:1
 
 " no folding, please
 set foldmethod=manual nofoldenable
 
 " indentation and edit correction
-set expandtab tabstop=2
+set expandtab tabstop=4
 set shiftwidth=0 shiftround
 set cinoptions=l1
 set textwidth=100
@@ -111,11 +120,11 @@ set clipboard=unnamedplus
 let mapleader="\\"
 
 " nohlsearch shortcut
-nnoremap <leader>n :noh<cr>
+nnoremap <silent> <leader>n :noh<cr>
 
 " easy buffer switching
-nnoremap <leader>j :bp<cr>
-nnoremap <leader>k :bn<cr>
+nnoremap <silent> <leader>j :bp<cr>
+nnoremap <silent> <leader>k :bn<cr>
 
 " fuzzy-find
 " XXX absolute fucking disaster - /dev/tty is a no-no in neovim, and termopen et al. is utter

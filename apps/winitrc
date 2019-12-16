@@ -1,4 +1,6 @@
 #!/usr/bin/fish
+systemctl --user import-environment
 systemctl --user start mako redshift
+/usr/lib/gsd-xsettings &
 autolaunch &
 

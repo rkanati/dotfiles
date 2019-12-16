@@ -2,16 +2,16 @@
 # VERSION: 3.0
 SETUVAR --export BORG_PASSCOMMAND:pass\x20backups
 SETUVAR --export BORG_REPO:/media/rk/backups/rk
-SETUVAR --export BOTTLES_DIR:/wine\x2dbottles
 SETUVAR --export CARGO_HOME:/home/rk/\x2ecache/cargo
 SETUVAR --export EDITOR:nvim
+SETUVAR --export --path GOPATH:/home/rk/\x2ecache/go
 SETUVAR --export LESSHISTFILE:\x2d
-SETUVAR --export MOZ_WEBRENDER:1
 SETUVAR --export MPD_HOST:/run/user/1000/mpd/socket
 SETUVAR --export QT_QPA_PLATFORM:wayland
 SETUVAR --export QT_WAYLAND_DISABLE_WINDOWDECORATION:1
 SETUVAR --export VISUAL:nvim
 SETUVAR --export WINEPREFIX:/dev/null
+SETUVAR --export XDG_CURRENT_DESKTOP:Unity
 SETUVAR --export _JAVA_AWT_WM_NONREPARENTING:1
 SETUVAR --export _JAVA_OPTIONS:\x2dDawt\x2euseSystemAAFontSettings\x3don
 SETUVAR __fish_classic_git_prompt_initialized:\x1d
