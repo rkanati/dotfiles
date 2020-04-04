@@ -1,3 +1,4 @@
 #!/bin/sh
+paplay --property=media.role=event ~/.config/rk-sounds/logoff
 loginctl terminate-session $XDG_SESSION_ID
 

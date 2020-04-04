@@ -3,47 +3,50 @@
 set $mon_left  DVI-D-2
 set $mon_right HDMI-A-1
 
-output * {
-# max_render_time 2
-}
+#output * {
+#    max_render_time 4
+#}
 
 output $mon_left {
-  res 1920x1080
-  pos 0 0
-  bg  ~/.config/wallpaper/left fill
+    res 1920x1080
+    pos 0 0
+    bg  ~/.config/wallpaper/left fill
 }
 
 output $mon_right {
-  res 1920x1080
-  pos 1920 0
-  bg  ~/.config/wallpaper/right fill
+    res 1920x1080
+    pos 1920 0
+    bg  ~/.config/wallpaper/right fill
 }
 
 # inputs ---------------------------------------------------------------------
 input * {
-  xkb_layout gb
-  xkb_model pc105
-  repeat_delay 250
-  repeat_rate  25
+    xkb_layout gb
+    xkb_model pc105
+    repeat_delay 250
+    repeat_rate  25
 }
 
 # appearance -----------------------------------------------------------------
 set $white  #fafbfc
-set $black  #2a373e
+#set $black  #2a373e
+set $black  #000000
 set $dkgrey #5b686f
 set $pink   #ff4081
 set $yellow #ffc017
 
 # class                 border  background  text    indicator child_border
-client.focused          $pink   $pink       $white  $white    $pink
+client.focused          $pink   $pink       $black  $white    $pink
 client.focused_inactive $black  $black      $dkgrey $black    $black
-client.unfocused        $black  $black      $dkgrey $black    $black
+client.unfocused        $black  $black      $white  $black    $black
 client.urgent           $yellow $yellow     $white  $yellow   $yellow
 
-font pango:Signika Regular 11
+# font pango:Signika Regular 11
+font pango:Iosevka Regular 12
 
-set $border_width 2
-default_border          pixel $border_width
+set $border_width 4
+
+default_border pixel $border_width
 default_floating_border pixel $border_width
 hide_edge_borders vertical
 
@@ -51,7 +54,8 @@ gaps inner 8
 gaps outer 8
 
 titlebar_border_thickness 0
-title_align center
+title_align left
+# center
 
 focus_on_window_activation urgent
 
@@ -116,6 +120,12 @@ bindsym $mod+p exec pass-popup
 
 bindsym $mod+semicolon exec term-tool app-menu-2
 
+bindsym $mod+bracketleft       exec makoctl dismiss
+bindsym $mod+Shift+bracketleft exec makoctl dismiss -a
+
+# mod+shift+escape on my poker3
+bindsym $mod+notsign exec swaylock
+
 bindsym $mod+control+n exec mpc volume -5
 bindsym $mod+control+m exec mpc volume +5
 bindsym $mod+control+i exec mpc play
@@ -177,24 +187,29 @@ bindsym $mod+Shift+0 move container to workspace 10
 assign [class="discord"] 10
 
 assign [app_id="todo"] 1
+for_window [app_id="todo"] floating enable
 
 for_window [app_id="pavucontrol"] floating enable
 
+for_window [app_id="zenity"] floating enable
+
+for_window [app_id="retroarch"] floating enable
+
 # latency control ------------------------------------------------------------
-for_window [title="^.*$"] max_render_time 2
+#for_window [title="^.*$"] max_render_time 4
 
 for_window [class="steam_app_49520"] max_render_time 1
 for_window [title="^Borderlands 2"]  max_render_time 1
 
 for_window [class="^steam_app_"] max_render_time 1
 
-for_window [app_id="mpv"] max_render_time 1
+for_window [app_id="mpv"] max_render_time 4
 
 for_window [class="firefox"] max_render_time 4
 
 # top bar --------------------------------------------------------------------
 bar {
-  swaybar_command waybar
+    swaybar_command waybar
 }
 
 include /etc/sway/config.d/*

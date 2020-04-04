@@ -8,5 +8,10 @@ CHOICE=$( \
     find . -path "*/\.*" -prune -o -type f -print \
   | sed "s#^\./##; s/\.gpg\$//;" \
   | fzf --no-hscroll --cycle --reverse --prompt="🔑 " \
-) && pass "${CHOICE}" $@ | head -1
+) && {
+    CONTENT=$(pass "${CHOICE}" $@) && {
+        echo "${CONTENT}" | head -1 | nohup wl-copy -o -n >&- 2>&- &
+        notify-send "pass: ${CHOICE}" "$(echo "${CONTENT}" | awk -v RS= 'NR > 1 {print}')"
+    }
+}
 

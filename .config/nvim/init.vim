@@ -47,8 +47,13 @@ let g:haskell_backpack                = 1
 
 " language server stuff
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'beta', 'rls'],
+    \ 'rust': ['rust-analyzer'],
     \ }
+
+" let g:LanguageClient_changeThrottle = 1.5
+
+" TODO use this once neovim 0.5 is out, with LSP support
+" lua require'nvim_lsp'.rust_analyzer.setup({})
 
 nnoremap <silent> <C-i> :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <C-p> :call LanguageClient_contextMenu()<CR>

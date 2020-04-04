@@ -9,10 +9,6 @@ window:
 scrolling:
     history: 10000
     multiplier: 3
-    auto_scroll: false
-
-# (changes require restart)
-tabspaces: 2
 
 # Font configuration (changes require restart)
 font:
@@ -25,24 +21,24 @@ font:
         sytle: Bold
 
     italic:
-        family: Office Code Pro D
+        family: monospace
         style: Italic
 
     # Pt
-    size: 12.5
+    size: 13.5
 
     # Offset is the extra space around each character. offset.y can be thought of
     # as modifying the linespacing, and offset.x as modifying the letter spacing.
     offset:
-        x: -1
-        y: -2
+        x: 0
+        y: 0
 
     # Glyph offset determines the locations of the glyphs within their cells with
     # the default being at the bottom. Increase the x offset to move the glyph to
     # the right, increase the y offset to move the glyph upward.
     glyph_offset:
         x: 0
-        y: -1
+        y: 0
 
 # Colors
 draw_bold_text_with_bright_colors: false
@@ -241,15 +237,16 @@ live_config_reload: true
 # a no-op if you do not wish to receive input characters for that binding.
 
 key_bindings:
-    - { key: V,        mods: Control|Shift, action: Paste                  }
-    - { key: C,        mods: Control|Shift, action: Copy                   }
-    - { key: Insert,   mods: Shift,         action: PasteSelection         }
-    - { key: Key0,     mods: Control,       action: ResetFontSize          }
-    - { key: Equals,   mods: Control,       action: IncreaseFontSize       }
-    - { key: Minus,    mods: Control,       action: DecreaseFontSize       }
-    - { key: T,        mods: Control|Shift, action: SpawnNewInstance       }
-    - { key: PageUp,   mods: Shift,         action: ScrollPageUp           }
-    - { key: PageDown, mods: Shift,         action: ScrollPageDown         }
-    - { key: Up,       mods: Shift,         action: ScrollLineUp           }
-    - { key: Down,     mods: Shift,         action: ScrollLineDown         }
+    - { key: V,         mods: Control|Shift, action: Paste                  }
+    - { key: C,         mods: Control|Shift, action: Copy                   }
+    - { key: Insert,    mods: Shift,         action: PasteSelection         }
+    - { key: Key0,      mods: Control,       action: ResetFontSize          }
+    - { key: Equals,    mods: Control,       action: IncreaseFontSize       }
+    - { key: Minus,     mods: Control,       action: DecreaseFontSize       }
+    - { key: T,         mods: Control|Shift, action: SpawnNewInstance       }
+    - { key: PageUp,    mods: Shift,         action: ScrollPageUp           }
+    - { key: PageDown,  mods: Shift,         action: ScrollPageDown         }
+    - { key: Up,        mods: Shift,         action: ScrollLineUp           }
+    - { key: Down,      mods: Shift,         action: ScrollLineDown         }
+    - { key: Back,      mods: Control,       chars: "" }
 

@@ -1,4 +1,4 @@
 #!/usr/bin/env dash
 # vim: ft=sh:
-term-tool pass-menu | nohup wl-copy -o -n >&- 2>&- &
+term-tool pass-menu
 

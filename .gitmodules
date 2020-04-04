@@ -37,3 +37,6 @@
 [submodule ".config/nvim/bundle/LanguageClient-neovim"]
 	path = .config/nvim/bundle/LanguageClient-neovim
 	url = https://github.com/autozimu/LanguageClient-neovim
+[submodule ".config/nvim/bundle/vim-toml"]
+	path = .config/nvim/bundle/vim-toml
+	url = https://github.com/cespare/vim-toml.git

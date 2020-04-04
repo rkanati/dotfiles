@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Signika, sans-serif;
+    font-family: ui, sans-serif;
     font-weight: normal;
     font-size: 11pt;
     min-height: 0;
@@ -9,7 +9,7 @@
 
 window#waybar {
     background: rgba(8,12,16,0.8); /*rgba(43, 48, 59, 0.5);*/
-    border-bottom: 2px solid rgba(8,12,16,1.0);
+    border-bottom: 3px solid rgba(8,12,16,1.0);
     color: white;
 }
 
@@ -17,7 +17,7 @@ window#waybar {
     padding: 0 5px;
     background: transparent;
     color: white;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
 }
 
 #workspaces button.visible {
@@ -26,18 +26,18 @@ window#waybar {
 
 #workspaces button.focused {
     background: #64727d;
-    border-bottom: 2px solid white;
+    border-bottom: 3px solid white;
 }
 
 #workspaces button.urgent {
     color: black;
     background: #ff4081;
-    border-bottom: 2px solid white;
+    border-bottom: 3px solid white;
 }
 
 #mode {
     background: #64727d;
-    border-bottom: 2px solid white;
+    border-bottom: 3px solid white;
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #tray, #mode, #mpd {
@@ -46,7 +46,7 @@ window#waybar {
 }
 
 #clock {
-    border-bottom: 2px solid #64727d;
+    border-bottom: 3px solid #64727d;
 }
 
 #battery {
@@ -82,16 +82,16 @@ window#waybar {
 }
 
 #memory {
-    border-bottom: 2px solid #9b59b6;
+    border-bottom: 3px solid #9b59b6;
 }
 
 #memory.warning {
-    border-bottom: 2px solid orange;
+    border-bottom: 3px solid orange;
     background: transparent;
 }
 
 #memory.critical {
-    border-bottom: 2px solid red;
+    border-bottom: 3px solid red;
     color: black;
     background: red;
     animation-name: blink;
@@ -121,17 +121,17 @@ window#waybar {
 }
 
 #mpd.playing {
-    border-bottom: 2px solid #2ecc71;
+    border-bottom: 3px solid #2ecc71;
 }
 
 #mpd.paused {
-    border-bottom: 2px solid #f1c40f;
+    border-bottom: 3px solid #f1c40f;
 }
 
 #mpd.stopped {
 }
 
 #tray {
-    border-bottom: 2px solid #2980b9;
+    border-bottom: 3px solid #2980b9;
 }
 

@@ -6,3 +6,5 @@ todo &
 udiskie --appindicator &
 #thunar --daemon &
 
+paplay --property=media.role=event ~/.config/rk-sounds/logon &
+

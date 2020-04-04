@@ -10,17 +10,21 @@ term -e htop
 pavucontrol
 thunar
 dconf-editor
+obs
+obs_listen
+wdisplays
 
 # Applications
 anki
+blcmm
 gimp
 glade
 google-earth
 kicad
-qbittorrent
 blender
 tiled
-blcmm
+tor-browser
+transmission-gtk
 
 # Games
 deltarune
@@ -28,7 +32,8 @@ deusex
 flmm
 freelancer
 gnome-mahjongg
-minecraft
+minecraft-launcher
+mines
 quadrapassel
 retroarch
 shifter
