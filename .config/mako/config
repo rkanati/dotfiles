@@ -1,7 +1,7 @@
 
 output=HDMI-A-1
 anchor=top-left
-layer=overlay
+#layer=overlay
 font=Signika Regular 11
 background-color=#080c10cc
 text-color=#ffffff

@@ -2,11 +2,13 @@
 # VERSION: 3.0
 SETUVAR --export BORG_PASSCOMMAND:pass\x20backups
 SETUVAR --export BORG_REPO:/media/rk/backups/rk
-SETUVAR --export CARGO_HOME:/home/rk/\x2ecache/cargo
+SETUVAR --export CARGO_HOME:/home/rk/\x2ecargo
 SETUVAR --export EDITOR:nvim
 SETUVAR --export --path GOPATH:/home/rk/\x2ecache/go
 SETUVAR --export LESSHISTFILE:\x2d
+SETUVAR --export MOZ_ENABLE_WAYLAND:1
 SETUVAR --export MPD_HOST:/run/user/1000/mpd/socket
+SETUVAR --export PODCHAMP_DOWNLOADER:download\x2dpodcast
 SETUVAR --export QT_QPA_PLATFORM:wayland
 SETUVAR --export QT_WAYLAND_DISABLE_WINDOWDECORATION:1
 SETUVAR --export VISUAL:nvim
@@ -19,6 +21,7 @@ SETUVAR __fish_init_1_50_0:\x1d
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
+SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:\x2d\x2dbold
@@ -30,6 +33,7 @@ SETUVAR fish_color_error:brred
 SETUVAR fish_color_escape:bryellow\x1e\x2d\x2dbold
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:bryellow
@@ -48,4 +52,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR --export fish_term24bit:1
-SETUVAR --export fish_user_paths:/home/rk/apps\x1e/home/rk/\x2ecache/cargo/bin
+SETUVAR --export fish_user_paths:/home/rk/apps\x1e/home/rk/\x2ecargo/bin

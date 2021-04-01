@@ -3,9 +3,9 @@
 set $mon_left  DVI-D-2
 set $mon_right HDMI-A-1
 
-#output * {
-#    max_render_time 4
-#}
+output * {
+    max_render_time 8
+}
 
 output $mon_left {
     res 1920x1080
@@ -28,30 +28,35 @@ input * {
 }
 
 # appearance -----------------------------------------------------------------
-set $white  #fafbfc
-#set $black  #2a373e
-set $black  #000000
-set $dkgrey #5b686f
-set $pink   #ff4081
-set $yellow #ffc017
+set {
+    $white  #fafbfc
+   #$black  #2a373e
+    $black  #000000
+    $dkgrey #5b686f
+   #$hilite #ff4081
+    $hilite #d4bfff
+    $yellow #ffee99
+}
 
 # class                 border  background  text    indicator child_border
-client.focused          $pink   $pink       $black  $white    $pink
+client.focused          $hilite $hilite     $black  $white    $hilite
 client.focused_inactive $black  $black      $dkgrey $black    $black
-client.unfocused        $black  $black      $white  $black    $black
+client.unfocused        $black  $black      $dkgrey $black    $black
 client.urgent           $yellow $yellow     $white  $yellow   $yellow
 
 # font pango:Signika Regular 11
-font pango:Iosevka Regular 12
+font pango:Iosevka Regular 11
 
 set $border_width 4
 
-default_border pixel $border_width
-default_floating_border pixel $border_width
-hide_edge_borders vertical
+default_border          pixel  $border_width
+default_floating_border normal $border_width
+# hide_edge_borders vertical
 
-gaps inner 8
-gaps outer 8
+gaps {
+    inner 10
+    outer 0
+}
 
 titlebar_border_thickness 0
 title_align left
@@ -62,150 +67,161 @@ focus_on_window_activation urgent
 # basic controls -------------------------------------------------------------
 set $mod  Mod4
 floating_modifier $mod
-
-# hideous workaround to prevent apps from seeing partial combos
-bindsym Super_L              nop
-bindsym $mod+Shift_L         nop
-bindsym $mod+Control_L       nop
-bindsym $mod+Shift+Control_L nop
-bindsym $mod+control+Shift_L nop
-
-set $left  h
-set $down  j
-set $up    k
-set $right l
-
-bindsym $mod+b border toggle
-
-bindsym           $mod+q       nop
-bindsym           $mod+Shift+q nop
-bindsym --release $mod+Shift+q kill
-
 focus_wrapping no
 
-bindsym $mod+$left  focus left
-bindsym $mod+$down  focus down
-bindsym $mod+$up    focus up
-bindsym $mod+$right focus right
+# hideous workaround to prevent apps from seeing partial combos
+bindsym {
+    Super_L              nop
+    $mod+Shift_L         nop
+    $mod+Control_L       nop
+    $mod+Shift+Control_L nop
+    $mod+control+Shift_L nop
+}
 
-bindsym $mod+Shift+$left  move left
-bindsym $mod+Shift+$down  move down
-bindsym $mod+Shift+$up    move up
-bindsym $mod+Shift+$right move right
+set {
+    $left  h
+    $down  j
+    $up    k
+    $right l
+}
 
-bindsym $mod+f           fullscreen toggle
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+v           split toggle
+bindsym {
+    $mod+b border toggle
 
-bindsym $mod+Shift+u     move to scratchpad
-bindsym $mod+u           scratchpad show
+    $mod+q       nop
+    $mod+Shift+q nop
+    --release $mod+Shift+q kill
 
-# work around weird sway bug
-for_window [floating] layout default
+    $mod+$left  focus left
+    $mod+$down  focus down
+    $mod+$up    focus up
+    $mod+$right focus right
 
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a     focus parent
-bindsym $mod+d     focus child
+    $mod+Shift+$left  move left
+    $mod+Shift+$down  move down
+    $mod+Shift+$up    move up
+    $mod+Shift+$right move right
 
-bindsym $mod+Return       exec term
-bindsym $mod+Shift+Return exec term --class "rk-pop-up"
-for_window [app_id="rk-pop-up"] floating enable
+    $mod+f           fullscreen toggle
+    $mod+Shift+space floating toggle
+    $mod+v           split toggle
 
-bindsym           $mod+s         nop
-bindsym --release $mod+s         exec rk-screencap-select
-bindsym           $mod+Shift+s   nop
-bindsym --release $mod+Shift+s   exec rk-screencap
+    $mod+Shift+u     move to scratchpad
+    $mod+u           scratchpad show
 
-bindsym $mod+p exec pass-popup
+    $mod+space focus mode_toggle
+    $mod+a     focus parent
+    $mod+d     focus child
 
-bindsym $mod+semicolon exec term-tool app-menu-2
+    $mod+Return       exec term
+    $mod+Shift+Return exec term --class "rk-pop-up"
 
-bindsym $mod+bracketleft       exec makoctl dismiss
-bindsym $mod+Shift+bracketleft exec makoctl dismiss -a
+    --release $mod+s       exec rk-screencap-select
+              $mod+s       nop
+    --release $mod+Shift+s exec rk-screencap
+              $mod+Shift+s nop
 
-# mod+shift+escape on my poker3
-bindsym $mod+notsign exec swaylock
+    $mod+p exec pass-popup
 
-bindsym $mod+control+n exec mpc volume -5
-bindsym $mod+control+m exec mpc volume +5
-bindsym $mod+control+i exec mpc play
-bindsym $mod+control+p exec mpc toggle
-bindsym $mod+control+u exec mpc stop
-bindsym $mod+control+k exec mpc prev
-bindsym $mod+control+j exec mpc next
-bindsym $mod+control+h exec mpc seek -10
-bindsym $mod+control+l exec mpc seek +10
+    $mod+t exec todo
+
+    $mod+semicolon exec term-tool app-menu-2
+
+    $mod+bracketleft       exec makoctl dismiss
+    $mod+Shift+bracketleft exec makoctl dismiss -a
+
+    # mod+shift+escape on my poker3
+    $mod+notsign exec swaylock
+
+    $mod+control+n exec mpc volume -5
+    $mod+control+m exec mpc volume +5
+    $mod+control+i exec mpc play
+    $mod+control+p exec mpc toggle
+    $mod+control+u exec mpc stop
+    $mod+control+k exec mpc prev
+    $mod+control+j exec mpc next
+    $mod+control+h exec mpc seek -10
+    $mod+control+l exec mpc seek +10
+}
 
 set $mrt_notify notify-send -t 5000 max_render_time
-bindsym $mod+control+Shift+0 max_render_time off; exec $mrt_notify off
-bindsym $mod+control+Shift+1 max_render_time 1;   exec $mrt_notify 1
-bindsym $mod+control+Shift+2 max_render_time 2;   exec $mrt_notify 2
-bindsym $mod+control+Shift+3 max_render_time 3;   exec $mrt_notify 3
-bindsym $mod+control+Shift+4 max_render_time 4;   exec $mrt_notify 4
-bindsym $mod+control+Shift+5 max_render_time 5;   exec $mrt_notify 5
-bindsym $mod+control+Shift+6 max_render_time 6;   exec $mrt_notify 6
-bindsym $mod+control+Shift+7 max_render_time 7;   exec $mrt_notify 7
-bindsym $mod+control+Shift+8 max_render_time 8;   exec $mrt_notify 8
-bindsym $mod+control+Shift+9 max_render_time 9;   exec $mrt_notify 9
+bindsym {
+    $mod+control+Shift+0 max_render_time off; exec $mrt_notify off
+    $mod+control+Shift+1 max_render_time 1;   exec $mrt_notify 1
+    $mod+control+Shift+2 max_render_time 2;   exec $mrt_notify 2
+    $mod+control+Shift+3 max_render_time 3;   exec $mrt_notify 3
+    $mod+control+Shift+4 max_render_time 4;   exec $mrt_notify 4
+    $mod+control+Shift+5 max_render_time 5;   exec $mrt_notify 5
+    $mod+control+Shift+6 max_render_time 6;   exec $mrt_notify 6
+    $mod+control+Shift+7 max_render_time 7;   exec $mrt_notify 7
+    $mod+control+Shift+8 max_render_time 8;   exec $mrt_notify 8
+    $mod+control+Shift+9 max_render_time 9;   exec $mrt_notify 9
+}
 
 # workspaces -----------------------------------------------------------------
-workspace 1  output $mon_left
-workspace 2  output $mon_left
-workspace 3  output $mon_left
-workspace 4  output $mon_left
-workspace 5  output $mon_left
+workspace {
+    1  output $mon_left
+    2  output $mon_left
+    3  output $mon_left
+    4  output $mon_left
+    5  output $mon_left
 
-workspace 6  output $mon_right
-workspace 7  output $mon_right
-workspace 8  output $mon_right
-workspace 9  output $mon_right
-workspace 10 output $mon_right
+    6  output $mon_right
+    7  output $mon_right
+    8  output $mon_right
+    9  output $mon_right
+    10 output $mon_right
+}
 
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym {
+    $mod+1 workspace 1
+    $mod+2 workspace 2
+    $mod+3 workspace 3
+    $mod+4 workspace 4
+    $mod+5 workspace 5
+    $mod+6 workspace 6
+    $mod+7 workspace 7
+    $mod+8 workspace 8
+    $mod+9 workspace 9
+    $mod+0 workspace 10
+    $mod+Shift+1 move container to workspace 1
+    $mod+Shift+2 move container to workspace 2
+    $mod+Shift+3 move container to workspace 3
+    $mod+Shift+4 move container to workspace 4
+    $mod+Shift+5 move container to workspace 5
+    $mod+Shift+6 move container to workspace 6
+    $mod+Shift+7 move container to workspace 7
+    $mod+Shift+8 move container to workspace 8
+    $mod+Shift+9 move container to workspace 9
+    $mod+Shift+0 move container to workspace 10
+}
 
 # assignments ----------------------------------------------------------------
-assign [class="discord"] 10
 
-assign [app_id="todo"] 1
-for_window [app_id="todo"] floating enable
+# XXX doesn't work because electron is garbage
+assign {
+    [class="discord"] 10
+    [class="electron"] 10
+    [app_id="discord"] 10
+    [app_id="electron"] 10
+    [title="discord"] 10
+    [title="electron"] 10
+}
 
-for_window [app_id="pavucontrol"] floating enable
+for_window {
+    [floating] layout default
 
-for_window [app_id="zenity"] floating enable
+    [app_id="rk-pop-up"]   floating enable
+    [app_id="pavucontrol"] floating enable
+    [app_id="zenity"]      floating enable
+    [app_id="retroarch"]   floating enable
 
-for_window [app_id="retroarch"] floating enable
-
-# latency control ------------------------------------------------------------
-#for_window [title="^.*$"] max_render_time 4
-
-for_window [class="steam_app_49520"] max_render_time 1
-for_window [title="^Borderlands 2"]  max_render_time 1
-
-for_window [class="^steam_app_"] max_render_time 1
-
-for_window [app_id="mpv"] max_render_time 4
-
-for_window [class="firefox"] max_render_time 4
+    [class="steam_app_49520"] max_render_time 1
+    [class="steam_app_39210"] max_render_time 1
+    [title="^Borderlands 2"]  max_render_time 1
+    [app_id="mpv"] max_render_time 4
+    [class="firefox"] max_render_time 4
+}
 
 # top bar --------------------------------------------------------------------
 bar {
@@ -213,13 +229,6 @@ bar {
 }
 
 include /etc/sway/config.d/*
-
-# autoexec -------------------------------------------------------------------
-# exec swayidle \
-#   timeout 300 'swaymsg "output * dpms off"' \
-#   resume      'swaymsg "output * dpms on"'
-
-#xwayland force
 
 exec winitrc
 

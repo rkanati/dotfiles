@@ -4,7 +4,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "tray", "memory", "clock"],
+    "modules-right": ["mpd", "tray", "memory", "clock#2", "clock"],
 
     "sway/workspaces": {
         "all-outputs": false,
@@ -20,6 +20,10 @@
     "clock": {
         "format": "{:%F %a %H%M}"
     },
+    "clock#2": {
+        "timezone": "Australia/Melbourne",
+        "format": "{:%H%M}"
+    },
     "cpu": {
         "format": " {usage}%"
     },
@@ -32,7 +36,6 @@
         "format": " {}%"
     },
     "network": {
-//      "interface": "wlp4s0", // (Optional) To force the use of this interface
         "format-wifi": "  {signalStrength}%",
         "format-ethernet": "🖧  {ifname}",
         "format-disconnected": "⚠  no net"
@@ -45,10 +48,10 @@
             "playing": "⏵"
         },
         "random-icons": {
-            "on": "🔀"
+            "on": "🔀︎"
         },
         "repeat-icons": {
-            "on": "🔁"
+            "on": "🔁︎"
         }
     }
 }

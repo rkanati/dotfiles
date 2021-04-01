@@ -1,3 +1,4 @@
 #!/usr/bin/fish
-term --class "todo" -d 80 40 -e nv documents/todo.md
+# term --class "todo" -d 80 40 -e nv documents/todo.md
+term -e nv shares/private/todo.md
 

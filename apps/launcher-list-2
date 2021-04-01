@@ -2,6 +2,7 @@
 # icon-char? ':' name ':' command?
 
 # Utilities
+alarmin
 gdmap
 ghex
 gparted
@@ -17,14 +18,18 @@ wdisplays
 # Applications
 anki
 blcmm
+blender
+digital
 gimp
 glade
-google-earth
+google-earth-pro
 kicad
-blender
+milton
 tiled
 tor-browser
 transmission-gtk
+utox
+wickrme
 
 # Games
 deltarune
@@ -49,6 +54,8 @@ term -e ncmpcpp
 todo
 
 # System
+one-monitor
+two-monitors
 end-session
 poweroff
 reboot

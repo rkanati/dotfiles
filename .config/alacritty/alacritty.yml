@@ -3,8 +3,8 @@
   # TERM: xterm-256color
 
 window:
-    # Window decorations
     decorations: full
+    dynamic_title: true
 
 scrolling:
     history: 10000
@@ -25,7 +25,7 @@ font:
         style: Italic
 
     # Pt
-    size: 13.5
+    size: 13.0
 
     # Offset is the extra space around each character. offset.y can be thought of
     # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -43,66 +43,100 @@ font:
 # Colors
 draw_bold_text_with_bright_colors: false
 
+# Colors (Ayu Dark)
 colors:
     cursor:
-        text:   '0x000000'
-        cursor: '0xffffff'
-
-    greys:
-        c232: &bg '0x080c10'
-        c233:     '0x13171a'
-        c234:     '0x1d2125'
-        c235: &bl '0x282c2f'
-        c236:     '0x33363a'
-        c237:     '0x3e4144'
-        c238:     '0x484b4e'
-        c239:     '0x535659'
-        c240:     '0x5e6163'
-        c241: &bb '0x696b6e'
-        c242:     '0x737678'
-        c243:     '0x7e8082'
-        c244:     '0x898b8d'
-        c245:     '0x949597'
-        c246:     '0x9ea0a1'
-        c247:     '0xa9aaac'
-        c248: &wh '0xb4b5b6'
-        c249:     '0xbfc0c1'
-        c250:     '0xc9cacb'
-        c251:     '0xd4d5d5'
-        c252:     '0xdfdfe0'
-        c253:     '0xeaeaea'
-        c254:     '0xf4f4f5'
-        c255: &bw '0xffffff'
-
-    normal:
-        black:    *bl
-        red:      '0xbf3d3d'
-        green:    '0x00c062'
-        yellow:   '0xa77f05'
-        blue:     '0x207b88'
-        magenta:  '0xad1457'
-        cyan:     '0x26a69a'
-        white:    *wh
-
-    bright:
-        black:    *bb
-        red:      '0xff5252'
-        green:    '0x00e676'
-        yellow:   '0xffc107'
-        blue:     '0x00bcd4'
-        magenta:  '0xff4081'
-        cyan:     '0x1de9b6'
-        white:    *bw
+        text:   '0x6a6080'
+        cursor: '0xd4bfff'
 
     # Default colors
     primary:
-        background: *bg
-        foreground: *wh
+        background: '0x0f1419'
+        foreground: '0xe6e1cf'
 
-    # # Dim colors (Optional)
-    # dim:
+    # Normal colors
+    normal:
+        black:   '0x000000'
+        red:     '0xff3333'
+        green:   '0xc2d94c'
+        yellow:  '0xe7c547'
+        blue:    '0x59c2ff'
+        magenta: '0xb77ee0'
+        cyan:    '0x5ccfe6'
+        white:   '0xf2f2f2'
 
-visual_bell:
+    # Bright colors
+    bright:
+        black:   '0x737d87'
+        red:     '0xf34a4a'
+        green:   '0xbae67e'
+        yellow:  '0xffee99'
+        blue:    '0x73d0ff'
+        magenta: '0xd4bfff'
+        cyan:    '0x83CEC6'
+        white:   '0xffffff'
+
+# my old colours
+#colors:
+#    cursor:
+#        text:   '0x000000'
+#        cursor: '0xffffff'
+#
+#    greys:
+#        c232: &bg '0x080c10'
+#        c233:     '0x13171a'
+#        c234:     '0x1d2125'
+#        c235: &bl '0x282c2f'
+#        c236:     '0x33363a'
+#        c237:     '0x3e4144'
+#        c238:     '0x484b4e'
+#        c239:     '0x535659'
+#        c240:     '0x5e6163'
+#        c241: &bb '0x696b6e'
+#        c242:     '0x737678'
+#        c243:     '0x7e8082'
+#        c244:     '0x898b8d'
+#        c245:     '0x949597'
+#        c246:     '0x9ea0a1'
+#        c247:     '0xa9aaac'
+#        c248: &wh '0xb4b5b6'
+#        c249:     '0xbfc0c1'
+#        c250:     '0xc9cacb'
+#        c251:     '0xd4d5d5'
+#        c252:     '0xdfdfe0'
+#        c253:     '0xeaeaea'
+#        c254:     '0xf4f4f5'
+#        c255: &bw '0xffffff'
+#
+#    normal:
+#        black:    *bl
+#        red:      '0xbf3d3d'
+#        green:    '0x00c062'
+#        yellow:   '0xa77f05'
+#        blue:     '0x207b88'
+#        magenta:  '0xad1457'
+#        cyan:     '0x26a69a'
+#        white:    *wh
+#
+#    bright:
+#        black:    *bb
+#        red:      '0xff5252'
+#        green:    '0x00e676'
+#        yellow:   '0xffc107'
+#        blue:     '0x00bcd4'
+#        magenta:  '0xff4081'
+#        cyan:     '0x1de9b6'
+#        white:    *bw
+#
+#    # Default colors
+#    primary:
+#        background: *bg
+#        foreground: *wh
+#
+#    # # Dim colors (Optional)
+#    # dim:
+
+bell:
     animation: EaseOutExpo
     duration: 0
 
@@ -126,12 +160,14 @@ mouse:
     hide_when_typing: true
 
 cursor:
-    style: Beam
+    style:
+        shape: Beam
+        blinking: Off
+    thickness: 0.25
 
 selection:
     semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-
-dynamic_title: true
+    save_to_clipboard: false
 
 # Live config reload (changes require restart)
 live_config_reload: true

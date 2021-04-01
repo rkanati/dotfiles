@@ -2,7 +2,7 @@
 # vim: ft=sh:
 LOCK_DIR="/run/user/$(id -u)/term-tool.lock.d"
 FIFO="${LOCK_DIR}/fifo"
-TERMOPTS="--class rk-pop-up -d 60 20"
+TERMOPTS="--class rk-pop-up -o window.dimensions.columns=50 -o window.dimensions.lines=20"
 THIS_SH=$(head -1 "$0" | sed "s/^#!//")
 
 test "$#" -ge 1 || exit 1
