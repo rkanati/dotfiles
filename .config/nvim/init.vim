@@ -7,7 +7,8 @@ helptags ALL
 
 " custom commands
 let mapleader = "\\"
-nmap , <leader>
+map , <leader>
+map <space> <leader>
 
 " APPEARANCE =======================================================================================
 let g:airline_powerline_fonts = 1
@@ -69,17 +70,8 @@ let g:airline#extensions#tabline#fnamecollapse = 1
 filetype plugin indent on
 syntax on
 
-let g:rust_recommended_style = 0
+" let g:rust_recommended_style = 0
 autocmd FileType rust setlocal tabstop=4
-
-let g:haskell_indent_disable          = 1
-let g:haskell_classic_highlighting    = 0
-let g:haskell_enable_quantification   = 1
-let g:haskell_enable_arrowsyntax      = 1
-let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_enable_typeroles        = 1
-let g:haskell_enable_static_pointers  = 1
-let g:haskell_backpack                = 1
 
 " set up LSP
 lua <<EOF
@@ -127,7 +119,7 @@ require'compe'.setup {
     autocomplete = true;
     debug = false;
     min_length = 1;
-    preselect = 'enable';
+    preselect = 'disable';
     throttle_time = 80;
     source_timeout = 200;
     incomplete_delay = 400;
@@ -137,7 +129,7 @@ require'compe'.setup {
     documentation = true;
 
     source = {
-        path = true;
+        path = false; -- FIXME fucks up LSP completion after "/ ", like a divide
         buffer = true;
         calc = true;
         nvim_lsp = true;
@@ -147,18 +139,22 @@ require'compe'.setup {
 }
 EOF
 
-" set omnifunc=v:lua.vim.lsp.omnifunc
-
 nnoremap <silent> <C-i> <cmd>lua vim.lsp.buf.hover()<cr>
-nnoremap <silent> <leader>d <cmd>lua vim.lsp.buf.definition()<cr>
-nnoremap <silent> <leader>i <cmd>lua vim.lsp.buf.implementation()<cr>
-nnoremap <silent> <leader>u <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
-nnoremap <silent> <leader>t <cmd>lua vim.lsp.buf.type_definition()<cr>
+nnoremap <silent> <leader>i <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 nnoremap <silent> <leader>r <cmd>lua vim.lsp.buf.references()<cr>
-nnoremap <silent> <leader>R <cmd>lua vim.lsp.buf.rename()<cr>
 nnoremap <silent> <leader>s <cmd>lua vim.lsp.buf.signature_help()<cr>
-nnoremap <silent> <leader>a <cmd>lua vim.lsp.buf.code_action()<cr>
-" vnoremap <silent> <leader>f <cmd>lua vim.lsp.buf.range_formatting()<cr>
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<cr>
+nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+
+nnoremap <silent> <leader>R <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <silent> <leader>A <cmd>lua vim.lsp.buf.code_action()<cr>
+xnoremap <silent> <leader>A <cmd>lua vim.lsp.buf.range_code_action()<cr>
+" xnoremap <silent> <leader>f <cmd>lua vim.lsp.buf.range_formatting()<cr>
+
 " TODO
 
 sign define LspDiagnosticsSignError       text=✘
@@ -166,13 +162,10 @@ sign define LspDiagnosticsSignWarning     text=▲
 sign define LspDiagnosticsSignInformation text=ℹ
 sign define LspDiagnosticsSignHint        text=★
 
-nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
-
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua
+autocmd CursorMoved,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua
 \   require'lsp_extensions'.inlay_hints {
 \       prefix = '',
-\       highlight = "Comment",
+\       highlight = "LspDiagnosticsVirtualTextHint",
 \       enabled = {"ChainingHint", "TypeHint", "ParameterHint"}
 \   }
 
@@ -189,6 +182,7 @@ set shortmess+=aAIsc
 set splitright
 set signcolumn=yes:1
 set showbreak=+
+set wildmenu wildmode=list:longest,full
 
 " no folding, please
 set foldmethod=manual nofoldenable
@@ -209,6 +203,7 @@ set hidden
 set backupdir=~/.local/share/nvim/backup
 set directory=~/.cache/nvim/swap//
 set autoread autowrite
+set updatetime=500
 
 " my shell
 " set shell=fish
@@ -220,7 +215,7 @@ tnoremap <C-q> <C-\><C-n>
 dig ++ 10746
 
 " highlight spilling lines
-set colorcolumn=+1,+2,+3,+4,+5,+6
+set colorcolumn=+1,+2,+3
 hi ColorColumn cterm=bold ctermfg=Red ctermbg=233
 
 " convenient save-all-quit
@@ -240,7 +235,7 @@ nnoremap <C-s> <nop>
 
 " clipboard
 set clipboard=unnamedplus
-inoremap <C-R> <C-r>'"'
+" inoremap <C-R> <C-r>'"'
 
 " nohlsearch shortcut
 nnoremap <silent> <leader>n :noh<cr>

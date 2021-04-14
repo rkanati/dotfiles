@@ -64,3 +64,6 @@
 [submodule ".config/nvim/bundle/nvim-compe"]
 	path = .config/nvim/pack/start/plugins/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe
+[submodule ".config/nvim/pack/plugins/start/nvim-treesitter"]
+	path = .config/nvim/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter

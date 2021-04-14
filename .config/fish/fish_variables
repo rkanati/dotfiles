@@ -1,5 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export ANDROID_NDK_ROOT:/home/rk/\x2eandroid/sdk/ndk/22\x2e1\x2e7171670/
+SETUVAR --export ANDROID_SDK_ROOT:/home/rk/\x2eandroid/sdk/
 SETUVAR --export BORG_PASSCOMMAND:pass\x20backups
 SETUVAR --export BORG_REPO:/media/rk/backups/rk
 SETUVAR --export CARGO_HOME:/home/rk/\x2ecargo
@@ -11,6 +13,8 @@ SETUVAR --export MPD_HOST:/run/user/1000/mpd/socket
 SETUVAR --export PODCHAMP_DOWNLOADER:download\x2dpodcast
 SETUVAR --export QT_QPA_PLATFORM:wayland
 SETUVAR --export QT_WAYLAND_DISABLE_WINDOWDECORATION:1
+SETUVAR --export SSH_AUTH_SOCK:/run/user/1000/gnupg/S\x2egpg\x2dagent\x2essh
+SETUVAR --export STUDIO_JDK:/usr/lib/jvm/java\x2d15\x2dopenjdk/
 SETUVAR --export VISUAL:nvim
 SETUVAR --export WINEPREFIX:/dev/null
 SETUVAR --export XDG_CURRENT_DESKTOP:Unity

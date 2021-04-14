@@ -1,19 +1,21 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 # vim: ft=sh:
-THIS_SH=$(head -1 "$0" | sed "s/^#!//")
 
-menu_command() {
+# simple launcher menu
+
+set -euo pipefail
+
+menu() {
     hs
 }
 
 choose() {
-    grep -v "^#\|^\s*\$"   \
-    | sed "s/\s*:\s*/\t/g" \
-    | menu_command
+    grep -v "^#\|^\s*\$" | \
+    sed "s/\s*:\s*/\t/g" | \
+    menu
 }
 
 if COMMAND=$(choose < ~/apps/launcher-list-2); then
-#   nohup $THIS_SH -c "$COMMAND &" <&- >/dev/null 2>/dev/null
     swaymsg exec -- $COMMAND
 else
     exit 1

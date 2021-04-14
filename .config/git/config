@@ -1,36 +1,36 @@
 [User]
-  email = raech.kanati@gmail.com
-  name = Rachel K
-  signingKey = FED8B0E5BB5930E5CCC6E21A6E200070FB3A92E3
+    email = rachel@automorphi.city
+    name = Rachel Knight
+    signingKey = 475DAD2A951B43F0292B04AFACCABC95A81694F3
 
 [push]
-  default = simple
+    default = simple
 
 [alias]
-  st = status
-  ci = commit --verbose
-  co = checkout
-  di = diff
-  dc = diff --cached
-  amend = commit --amend
-  aa = add --all --verbose
-  au = add --update --verbose
-  ff = merge --ff-only
-  pullff = pull --ff-only
-  noff = merge --no-ff
-  fa = fetch --all
-  pom = push origin master
-  b = branch
-  has = ls-files --error-unmatch --full-name
-  mod = submodule
-  l = log --graph --oneline --decorate --all
+    st = status
+    ci = commit --verbose
+    co = checkout
+    di = diff
+    dc = diff --cached
+    amend = commit --amend
+    aa = add --all --verbose
+    au = add --update --verbose
+    ff = merge --ff-only
+    pullff = pull --ff-only
+    noff = merge --no-ff
+    fa = fetch --all
+    pom = push origin master
+    b = branch
+    has = ls-files --error-unmatch --full-name
+    mod = submodule
+    l = log --graph --oneline --decorate --all
 
 [core]
-  askPass =
+    askPass =
 
 [rebase]
-  autoSquash = true
+    autoSquash = true
 
 [commit]
-  gpgSign = true
+    gpgSign = true
 

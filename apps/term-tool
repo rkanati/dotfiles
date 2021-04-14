@@ -1,5 +1,10 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 # vim: ft=sh:
+
+# execute a command in a popup terminal window
+
+set -euo pipefail
+
 LOCK_DIR="/run/user/$(id -u)/term-tool.lock.d"
 FIFO="${LOCK_DIR}/fifo"
 TERMOPTS="--class rk-pop-up -o window.dimensions.columns=50 -o window.dimensions.lines=20"

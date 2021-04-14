@@ -1,17 +1,19 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 # vim: ft=sh:
-test -d "$PASSWORD_STORE_DIR" \
-  && cd "$PASSWORD_STORE_DIR" \
-  || cd ~/.password-store
 
-CHOICE=$( \
-    find . -path "*/\.*" -prune -o -type f -print \
-  | sed "s#^\./##; s/\.gpg\$//;" \
-  | fzf --no-hscroll --cycle --reverse --prompt="🔑 " \
-) && {
-    CONTENT=$(pass "${CHOICE}" $@) && {
-        echo "${CONTENT}" | head -1 | nohup wl-copy -o -n >&- 2>&- &
-        notify-send "pass: ${CHOICE}" "$(echo "${CONTENT}" | awk -v RS= 'NR > 1 {print}')"
-    }
-}
+# show password-store selection menu
+
+set -euo pipefail
+
+cd "${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
+
+CHOICE="$( \
+    find . -path "*/\.*" -prune -o -type f -print | \
+    sed "s#^\./##; s/\.gpg\$//;" | \
+    fzf --no-hscroll --cycle --reverse --prompt="🔑 " \
+)"
+
+pass show -c "${CHOICE}"
+notify-send "pass: ${CHOICE}" \
+    "$(pass show "${CHOICE}" | awk -v RS= 'NR==2{print}')"
 

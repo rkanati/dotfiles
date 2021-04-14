@@ -200,11 +200,11 @@ bindsym {
 
 # XXX doesn't work because electron is garbage
 assign {
-    [class="discord"] 10
+    [class="^Discord$"] 10
     [class="electron"] 10
-    [app_id="discord"] 10
+    [app_id="^Discord$"] 10
     [app_id="electron"] 10
-    [title="discord"] 10
+    [title="^Discord$"] 10
     [title="electron"] 10
 }
 
@@ -217,7 +217,7 @@ for_window {
     [app_id="retroarch"]   floating enable
 
     [class="steam_app_49520"] max_render_time 1
-    [class="steam_app_39210"] max_render_time 1
+    #[class="steam_app_39210"] max_render_time 1
     [title="^Borderlands 2"]  max_render_time 1
     [app_id="mpv"] max_render_time 4
     [class="firefox"] max_render_time 4
