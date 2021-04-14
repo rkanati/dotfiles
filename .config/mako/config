@@ -5,6 +5,7 @@ anchor=top-left
 font=Signika Regular 11
 background-color=#080c10cc
 text-color=#ffffff
+#text-color=#d4bfff
 border-size=0
 format=<b>%s</b>\n%b
 margin=0,0,0

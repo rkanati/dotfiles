@@ -6,25 +6,41 @@
 set -euo pipefail
 
 LOCK_DIR="/run/user/$(id -u)/term-tool.lock.d"
-FIFO="${LOCK_DIR}/fifo"
 TERMOPTS="--class rk-pop-up -o window.dimensions.columns=50 -o window.dimensions.lines=20"
-THIS_SH=$(head -1 "$0" | sed "s/^#!//")
-
 test "$#" -ge 1 || exit 1
-
 cleanup() {
-  rm -rf "${LOCK_DIR}"
+    rm -rf "${LOCK_DIR}"
 }
 
 mkdir "${LOCK_DIR}" || exit 1
+touch "${LOCK_DIR}/$$"
+trap cleanup INT EXIT
+term ${TERMOPTS} -e bash '-ic' '--' "$*; wait"
 
-trap cleanup INT
-trap cleanup EXIT
+# XXX this is fundamentally broken; i just about got it to work, but it's still mysteriously broken
+#     half the time. converted to just a terminal window until further notice
+# TODO might just be the race condition i fixed with 'wait' above; try this
 
-mkfifo "${FIFO}" || exit 1
-
-term ${TERMOPTS} -e ${THIS_SH} -c "$* >${FIFO} 2>/dev/tty <&-" &
-TERM_JOB=$!
-cat "${FIFO}" &
-wait $TERM_JOB
-
+#LOCK_DIR="/run/user/$(id -u)/term-tool.lock.d"
+#FIFO="${LOCK_DIR}/fifo"
+#TERMOPTS="--class rk-pop-up -o window.dimensions.columns=50 -o window.dimensions.lines=20"
+#THIS_SH=$(head -1 "$0" | sed "s/^#!//")
+#
+#test "$#" -ge 1 || exit 1
+#
+#cleanup() {
+#  rm -rf "${LOCK_DIR}"
+#}
+#
+#mkdir "${LOCK_DIR}" || exit 1
+#
+#trap cleanup INT
+#trap cleanup EXIT
+#
+#mkfifo "${FIFO}" || exit 1
+#
+#term ${TERMOPTS} -e ${THIS_SH} -c "$* >${FIFO} 2>/dev/tty <&-" &
+#TERM_JOB=$!
+#cat "${FIFO}" &
+#wait $TERM_JOB
+#

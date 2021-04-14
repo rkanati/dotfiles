@@ -121,11 +121,9 @@ bindsym {
     --release $mod+Shift+s exec rk-screencap
               $mod+Shift+s nop
 
-    $mod+p exec pass-popup
-
-    $mod+t exec todo
-
     $mod+semicolon exec term-tool app-menu-2
+    $mod+p exec term-tool pass-menu
+    $mod+t exec todo
 
     $mod+bracketleft       exec makoctl dismiss
     $mod+Shift+bracketleft exec makoctl dismiss -a
