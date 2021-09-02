@@ -32,7 +32,6 @@ go() {
     --exclude "*.hi"
 }
 
-DIRS="apps/ comics/ .config/ documents/ film/recorded/ .gnupg/ misc/ .password-store/ pictures/ \
-podcasts/ projects/ shares/ .ssh/"
+DIRS="apps/ birch/ comics/ .config/ disc-images/ documents/ film/recorded/ .gnupg/ misc/ music/ .password-store/ pictures/ podcasts/ projects/ shares/ .ssh/ .tor-browser/"
 go $DIRS "$@"
 

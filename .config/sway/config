@@ -1,39 +1,15 @@
 
-# monitors -------------------------------------------------------------------
-set $mon_left  DVI-D-2
-set $mon_right HDMI-A-1
+include /etc/sway/config.d/*
 
-output * {
-    max_render_time 8
-}
-
-output $mon_left {
-    res 1920x1080
-    pos 0 0
-    bg  ~/.config/wallpaper/left fill
-}
-
-output $mon_right {
-    res 1920x1080
-    pos 1920 0
-    bg  ~/.config/wallpaper/right fill
-}
-
-# inputs ---------------------------------------------------------------------
-input * {
-    xkb_layout gb
-    xkb_model pc105
-    repeat_delay 250
-    repeat_rate  25
-}
+# wallpaper ------------------------------------------------------------------
+output $mon_left  bg ~/.config/wallpaper/left  fill
+output $mon_right bg ~/.config/wallpaper/right fill
 
 # appearance -----------------------------------------------------------------
 set {
     $white  #fafbfc
-   #$black  #2a373e
     $black  #000000
     $dkgrey #5b686f
-   #$hilite #ff4081
     $hilite #d4bfff
     $yellow #ffee99
 }
@@ -44,14 +20,11 @@ client.focused_inactive $black  $black      $dkgrey $black    $black
 client.unfocused        $black  $black      $dkgrey $black    $black
 client.urgent           $yellow $yellow     $white  $yellow   $yellow
 
-# font pango:Signika Regular 11
 font pango:Iosevka Regular 11
 
 set $border_width 4
-
 default_border          pixel  $border_width
 default_floating_border normal $border_width
-# hide_edge_borders vertical
 
 gaps {
     inner 10
@@ -60,9 +33,6 @@ gaps {
 
 titlebar_border_thickness 0
 title_align left
-# center
-
-focus_on_window_activation urgent
 
 # basic controls -------------------------------------------------------------
 set $mod  Mod4
@@ -121,7 +91,7 @@ bindsym {
     --release $mod+Shift+s exec rk-screencap
               $mod+Shift+s nop
 
-    $mod+semicolon exec term-tool app-menu-2
+    $mod+semicolon exec term-tool app-menu
     $mod+p exec term-tool pass-menu
     $mod+t exec todo
 
@@ -138,22 +108,23 @@ bindsym {
     $mod+control+u exec mpc stop
     $mod+control+k exec mpc prev
     $mod+control+j exec mpc next
-    $mod+control+h exec mpc seek -10
-    $mod+control+l exec mpc seek +10
+    $mod+control+h exec mpc seek -5
+    $mod+control+l exec mpc seek +5
 }
 
 set $mrt_notify notify-send -t 5000 max_render_time
+set $mrt_mod $mod+control+Shift
 bindsym {
-    $mod+control+Shift+0 max_render_time off; exec $mrt_notify off
-    $mod+control+Shift+1 max_render_time 1;   exec $mrt_notify 1
-    $mod+control+Shift+2 max_render_time 2;   exec $mrt_notify 2
-    $mod+control+Shift+3 max_render_time 3;   exec $mrt_notify 3
-    $mod+control+Shift+4 max_render_time 4;   exec $mrt_notify 4
-    $mod+control+Shift+5 max_render_time 5;   exec $mrt_notify 5
-    $mod+control+Shift+6 max_render_time 6;   exec $mrt_notify 6
-    $mod+control+Shift+7 max_render_time 7;   exec $mrt_notify 7
-    $mod+control+Shift+8 max_render_time 8;   exec $mrt_notify 8
-    $mod+control+Shift+9 max_render_time 9;   exec $mrt_notify 9
+    $mrt_mod+0 max_render_time off; exec $mrt_notify off
+    $mrt_mod+1 max_render_time 1;   exec $mrt_notify 1
+    $mrt_mod+2 max_render_time 2;   exec $mrt_notify 2
+    $mrt_mod+3 max_render_time 3;   exec $mrt_notify 3
+    $mrt_mod+4 max_render_time 4;   exec $mrt_notify 4
+    $mrt_mod+5 max_render_time 5;   exec $mrt_notify 5
+    $mrt_mod+6 max_render_time 6;   exec $mrt_notify 6
+    $mrt_mod+7 max_render_time 7;   exec $mrt_notify 7
+    $mrt_mod+8 max_render_time 8;   exec $mrt_notify 8
+    $mrt_mod+9 max_render_time 9;   exec $mrt_notify 9
 }
 
 # workspaces -----------------------------------------------------------------
@@ -196,15 +167,17 @@ bindsym {
 
 # assignments ----------------------------------------------------------------
 
-# XXX doesn't work because electron is garbage
 assign {
     [class="^Discord$"] 10
-    [class="electron"] 10
     [app_id="^Discord$"] 10
-    [app_id="electron"] 10
     [title="^Discord$"] 10
-    [title="electron"] 10
 }
+
+# STG comes up too late to match on this
+# assign {
+#     [app_id="firefox" title="^[Main]"] 1
+#     [app_id="firefox" title="^[Devs]"] 8
+# }
 
 for_window {
     [floating] layout default
@@ -219,6 +192,8 @@ for_window {
     [title="^Borderlands 2"]  max_render_time 1
     [app_id="mpv"] max_render_time 4
     [class="firefox"] max_render_time 4
+    [app_id="^Alacritty$"] max_render_time 1
+    [title="^Deus Ex$"] max_render_time 1
 }
 
 # top bar --------------------------------------------------------------------
@@ -226,7 +201,6 @@ bar {
     swaybar_command waybar
 }
 
-include /etc/sway/config.d/*
-
+workspace 1
 exec winitrc
 

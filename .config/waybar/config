@@ -1,57 +1,74 @@
+// vim: ft=jsonc:
 {
     "layer": "top", // Waybar at top layer
-    "height": 28, // Waybar height
+    "height": 24, // Waybar height
 
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "tray", "memory", "clock#2", "clock"],
+    "modules-left": ["sway/window", "sway/mode"],
+    "modules-right": ["sway/workspaces", "idle_inhibitor", "mpd", "tray", "memory", "clock#2", "clock"],
 
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll-wraparound": true
     },
+
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+
+    "sway/window": {
+        "tooltip": false,
+        "on-click-middle": "swaymsg kill"
+    },
+
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+        "spacing": 5
     },
+
     "clock": {
-        "format": "{:%F %a %H%M}"
+        "format": "{:%F %a %H%M}",
+        "tooltip": false
     },
+
     "clock#2": {
         "timezone": "Australia/Melbourne",
-        "format": "{:%H%M}"
+        "format": "{:%H%M}",
+        "tooltip-format": "Australia/Melbourne: {:%F %a %H%M}"
     },
+
     "cpu": {
         "format": " {usage}%"
     },
+
     "memory": {
         "states": {
             "warning": 80,
             "critical": 95
         },
-        "inverval": 5,
+
+        "inverval": 10,
         "format": " {}%"
     },
+
     "network": {
         "format-wifi": "  {signalStrength}%",
         "format-ethernet": "🖧  {ifname}",
         "format-disconnected": "⚠  no net"
     },
+
     "mpd": {
-        "format": "♫ {stateIcon}{randomIcon}{repeatIcon} {artist} - {title}",
-        "format-stopped": "♫ ⏹",
-        "state-icons": {
-            "paused": "⏸",
-            "playing": "⏵"
-        },
-        "random-icons": {
-            "on": "🔀︎"
-        },
-        "repeat-icons": {
-            "on": "🔁︎"
+        "format": "♫ {stateIcon}{randomIcon}{repeatIcon}",// {artist} - {title}",
+        "format-stopped": "♫ ⏹",
+        "format-disconnected": "♫ ⋯",
+        "state-icons": { "paused": "⏸", "playing": "⏵" },
+        "random-icons": { "on": "?" },
+        "repeat-icons": { "on": "R" },
+        "tooltip-format": "{artist} - {title}",
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "☕"
         }
     }
 }

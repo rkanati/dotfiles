@@ -1,4 +1,3 @@
-# Defined in /tmp/fish.CThWmx/la.fish @ line 2
-function la --description 'List contents of directory, including hidden files in directory using long format' -w ls
-	ls -lah $argv
+function la --wraps=ls --wraps='exa -la' --description 'alias la exa -la'
+  exa -la $argv; 
 end

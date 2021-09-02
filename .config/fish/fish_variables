@@ -3,22 +3,17 @@
 SETUVAR --export ANDROID_NDK_ROOT:/home/rk/\x2eandroid/sdk/ndk/22\x2e1\x2e7171670/
 SETUVAR --export ANDROID_SDK_ROOT:/home/rk/\x2eandroid/sdk/
 SETUVAR --export BORG_PASSCOMMAND:pass\x20backups
-SETUVAR --export BORG_REPO:/media/rk/backups/rk
+SETUVAR --export BORG_REPO:/media/rk/rk\x2dbackups/rk
 SETUVAR --export CARGO_HOME:/home/rk/\x2ecargo
 SETUVAR --export EDITOR:nvim
 SETUVAR --export --path GOPATH:/home/rk/\x2ecache/go
 SETUVAR --export LESSHISTFILE:\x2d
-SETUVAR --export MOZ_ENABLE_WAYLAND:1
+SETUVAR --export MOZ_DBUS_REMOTE:1
 SETUVAR --export MPD_HOST:/run/user/1000/mpd/socket
-SETUVAR --export PODCHAMP_DOWNLOADER:download\x2dpodcast
-SETUVAR --export QT_QPA_PLATFORM:wayland
-SETUVAR --export QT_WAYLAND_DISABLE_WINDOWDECORATION:1
 SETUVAR --export SSH_AUTH_SOCK:/run/user/1000/gnupg/S\x2egpg\x2dagent\x2essh
 SETUVAR --export STUDIO_JDK:/usr/lib/jvm/java\x2d15\x2dopenjdk/
 SETUVAR --export VISUAL:nvim
 SETUVAR --export WINEPREFIX:/dev/null
-SETUVAR --export XDG_CURRENT_DESKTOP:Unity
-SETUVAR --export _JAVA_AWT_WM_NONREPARENTING:1
 SETUVAR --export _JAVA_OPTIONS:\x2dDawt\x2euseSystemAAFontSettings\x3don
 SETUVAR __fish_classic_git_prompt_initialized:\x1d
 SETUVAR __fish_init_1_50_0:\x1d

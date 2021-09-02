@@ -1,69 +1,69 @@
-[submodule ".config/nvim/bundle/i3-vim-syntax"]
-	path = .config/nvim/pack/start/plugins/i3-vim-syntax
-	url = https://github.com/PotatoesMaster/i3-vim-syntax.git
-[submodule ".config/nvim/bundle/vim-airline"]
-	path = .config/nvim/pack/start/plugins/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
-[submodule ".config/nvim/bundle/vim-airline-themes"]
-	path = .config/nvim/pack/start/plugins/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule ".config/nvim/bundle/vim-fish"]
-	path = .config/nvim/pack/start/plugins/vim-fish
-	url = https://github.com/dag/vim-fish.git
-[submodule ".config/nvim/bundle/vim-glsl"]
-	path = .config/nvim/pack/start/plugins/vim-glsl
-	url = https://github.com/tikhomirov/vim-glsl.git
-[submodule ".config/nvim/bundle/vim-noctu"]
-	path = .config/nvim/pack/start/plugins/vim-noctu
-	url = https://github.com/noahfrederick/vim-noctu.git
-[submodule ".config/nvim/bundle/vim-arktu"]
-	path = .config/nvim/pack/start/plugins/vim-arktu
-	url = https://github.com/rkanati/vim-arktu.git
-[submodule ".config/nvim/bundle/vim-fugitive"]
-	path = .config/nvim/pack/start/plugins/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".config/nvim/bundle/vim-better-whitespace"]
-	path = .config/nvim/pack/start/plugins/vim-better-whitespace
-	url = https://github.com/ntpeters/vim-better-whitespace.git
-[submodule ".config/nvim/bundle/vim-toml"]
-	path = .config/nvim/pack/start/plugins/vim-toml
-	url = https://github.com/cespare/vim-toml.git
-[submodule ".config/nvim/bundle/nvim-lspconfig"]
-	path = .config/nvim/pack/start/plugins/nvim-lspconfig
+[submodule ".config/nvim/pack/plugins/start/jsonc.vim"]
+	path = .config/nvim/pack/plugins/start/jsonc.vim
+	url = https://github.com/neoclide/jsonc.vim
+[submodule ".config/nvim/pack/plugins/start/i3-vim-syntax"]
+	path = .config/nvim/pack/plugins/start/i3-vim-syntax
+	url = https://github.com/PotatoesMaster/i3-vim-syntax
+[submodule ".config/nvim/pack/plugins/start/vim-airline"]
+	path = .config/nvim/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule ".config/nvim/pack/plugins/start/vim-airline-themes"]
+	path = .config/nvim/pack/plugins/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule ".config/nvim/pack/plugins/start/vim-fish"]
+	path = .config/nvim/pack/plugins/start/vim-fish
+	url = https://github.com/dag/vim-fish
+[submodule ".config/nvim/pack/plugins/start/vim-glsl"]
+	path = .config/nvim/pack/plugins/start/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl
+[submodule ".config/nvim/pack/plugins/start/vim-noctu"]
+	path = .config/nvim/pack/plugins/start/vim-noctu
+	url = https://github.com/noahfrederick/vim-noctu
+[submodule ".config/nvim/pack/plugins/start/vim-arktu"]
+	path = .config/nvim/pack/plugins/start/vim-arktu
+	url = https://github.com/rkanati/vim-arktu
+[submodule ".config/nvim/pack/plugins/start/vim-fugitive"]
+	path = .config/nvim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule ".config/nvim/pack/plugins/start/vim-better-whitespace"]
+	path = .config/nvim/pack/plugins/start/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace
+[submodule ".config/nvim/pack/plugins/start/vim-toml"]
+	path = .config/nvim/pack/plugins/start/vim-toml
+	url = https://github.com/cespare/vim-toml
+[submodule ".config/nvim/pack/plugins/start/nvim-lspconfig"]
+	path = .config/nvim/pack/plugins/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
-[submodule ".config/nvim/bundle/lsp_extensions.nvim"]
-	path = .config/nvim/pack/start/plugins/lsp_extensions.nvim
+[submodule ".config/nvim/pack/plugins/start/lsp_extensions.nvim"]
+	path = .config/nvim/pack/plugins/start/lsp_extensions.nvim
 	url = https://github.com/tjdevries/lsp_extensions.nvim
-[submodule ".config/nvim/bundle/vim-one"]
-	path = .config/nvim/pack/start/plugins/vim-one
+[submodule ".config/nvim/pack/plugins/start/vim-one"]
+	path = .config/nvim/pack/plugins/start/vim-one
 	url = https://github.com/rakr/vim-one
-[submodule ".config/nvim/bundle/ayu-vim"]
-	path = .config/nvim/pack/start/plugins/ayu-vim
+[submodule ".config/nvim/pack/plugins/start/ayu-vim"]
+	path = .config/nvim/pack/plugins/start/ayu-vim
 	url = https://github.com/ayu-theme/ayu-vim
-[submodule ".config/nvim/bundle/onedark.vim"]
-	path = .config/nvim/pack/start/plugins/onedark.vim
+[submodule ".config/nvim/pack/plugins/start/onedark.vim"]
+	path = .config/nvim/pack/plugins/start/onedark.vim
 	url = https://github.com/joshdick/onedark.vim
-[submodule ".config/nvim/bundle/oceanic-next"]
-	path = .config/nvim/pack/start/plugins/oceanic-next
+[submodule ".config/nvim/pack/plugins/start/oceanic-next"]
+	path = .config/nvim/pack/plugins/start/oceanic-next
 	url = https://github.com/mhartington/oceanic-next
-[submodule ".config/nvim/bundle/rust.vim"]
-	path = .config/nvim/pack/start/plugins/rust.vim
+[submodule ".config/nvim/pack/plugins/start/rust.vim"]
+	path = .config/nvim/pack/plugins/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim
-[submodule ".config/nvim/bundle/molokayo"]
-	path = .config/nvim/pack/start/plugins/molokayo
+[submodule ".config/nvim/pack/plugins/start/molokayo"]
+	path = .config/nvim/pack/plugins/start/molokayo
 	url = https://github.com/fmoralesc/molokayo
-[submodule ".config/nvim/bundle/molokai"]
-	path = .config/nvim/pack/start/plugins/molokai
+[submodule ".config/nvim/pack/plugins/start/molokai"]
+	path = .config/nvim/pack/plugins/start/molokai
 	url = https://github.com/tomasr/molokai
-[submodule ".config/nvim/bundle/fzf.vim"]
-	path = .config/nvim/pack/start/plugins/fzf.vim
+[submodule ".config/nvim/pack/plugins/start/fzf.vim"]
+	path = .config/nvim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule ".config/nvim/bundle/ayu-vim-rk"]
-	path = .config/nvim/pack/start/plugins/ayu-vim-rk
+[submodule ".config/nvim/pack/plugins/start/ayu-vim-rk"]
+	path = .config/nvim/pack/plugins/start/ayu-vim-rk
 	url = https://github.com/rkanati/ayu-vim-rk
-[submodule ".config/nvim/bundle/nvim-compe"]
-	path = .config/nvim/pack/start/plugins/nvim-compe
+[submodule ".config/nvim/pack/plugins/start/nvim-compe"]
+	path = .config/nvim/pack/plugins/start/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe
-[submodule ".config/nvim/pack/plugins/start/nvim-treesitter"]
-	path = .config/nvim/pack/plugins/start/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter

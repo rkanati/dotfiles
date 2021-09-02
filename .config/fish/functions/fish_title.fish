@@ -1,9 +1,10 @@
-# Defined in /home/rk/.config/fish/functions/fish_title.fish @ line 2
+# Defined in /tmp/fish.TPruaK/fish_title.fish @ line 2
 function fish_title
-	echo -ns (homeify $PWD)
-  if test "$_" != fish
-    echo -ns " ― $argv"
-  else
-    echo -ns " ― fish"
-  end
+    set -q argv[1]; or set argv "fish"
+    echo -ns "$argv · "(fish_prompt_pwd_dir_length=1 prompt_pwd)
+    #if test "$_" != fish
+    #    echo -ns "$argv[1] · $formatted_cwd"
+    #else
+    #    echo -ns "fish · $formatted_cwd"
+    #end
 end

@@ -129,12 +129,12 @@ require'compe'.setup {
     documentation = true;
 
     source = {
+        nvim_lsp = { priority = 2; };
+        buffer = { priority = 1; };
         path = false; -- FIXME fucks up LSP completion after "/ ", like a divide
-        buffer = true;
-        calc = true;
-        nvim_lsp = true;
-        nvim_lua = true;
-        vsnip = true;
+        nvim_lua = false;
+        vsnip = false;
+        calc = false; -- kinda shitty tbh; thinks `1_000` is just zero...
     };
 }
 EOF
@@ -166,7 +166,7 @@ autocmd CursorMoved,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua
 \   require'lsp_extensions'.inlay_hints {
 \       prefix = '',
 \       highlight = "LspDiagnosticsVirtualTextHint",
-\       enabled = {"ChainingHint", "TypeHint", "ParameterHint"}
+\       enabled = {"ChainingHint", "TypeHint"}
 \   }
 
 " ui config
@@ -192,8 +192,9 @@ set expandtab tabstop=4
 set shiftwidth=0 shiftround
 set cinoptions=l1
 set textwidth=100
-set formatoptions-=t
+set formatoptions=cqj
 set virtualedit=block
+" set formatoptions+=a
 
 " match case-insensitive when lowercase
 set ignorecase smartcase
@@ -225,6 +226,9 @@ nnoremap ZX :xa<cr>
 nnoremap ZQ <nop>
 nnoremap ZZ <nop>
 
+" ^Q for :ex is fucking annoying
+nnoremap <C-q> <nop>
+
 " use CTRL-hjkl for window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -245,7 +249,7 @@ nnoremap <silent> <leader>j :bp<cr>
 nnoremap <silent> <leader>k :bn<cr>
 
 nnoremap <leader>O :Files<cr>
-nnoremap <leader>o :GFiles?<cr>
+nnoremap <leader>o :GFiles -cmo --exclude-standard<cr>
 nnoremap <leader>p :Buffers<cr>
 nnoremap <leader>g :Rg<cr>
 

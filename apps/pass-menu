@@ -15,5 +15,5 @@ CHOICE="$( \
 
 pass show -c "${CHOICE}"
 notify-send "pass: ${CHOICE}" \
-    "$(pass show "${CHOICE}" | awk -v RS= 'NR==2{print}')"
+    "$(pass show "${CHOICE}" | tail -n +2)"
 

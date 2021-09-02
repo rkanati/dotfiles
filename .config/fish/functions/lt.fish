@@ -1,4 +1,3 @@
-# Defined in - @ line 1
-function lt --description 'alias lt ls -t'
-	ls -t $argv;
+function lt --wraps='exa --sort oldest' --description 'alias lt exa --sort oldest'
+  exa --sort oldest $argv; 
 end

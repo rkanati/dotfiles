@@ -1,18 +1,17 @@
 
 output=HDMI-A-1
-anchor=top-left
-#layer=overlay
+anchor=top-center
 font=Signika Regular 11
 background-color=#080c10cc
 text-color=#ffffff
-#text-color=#d4bfff
 border-size=0
 format=<b>%s</b>\n%b
 margin=0,0,0
 padding=5,5,10
 sort=+time
-height=300
-width=400
+height=100
+width=500
+default-timeout=5000
 
 [urgency=high]
 background-color=#ff4081

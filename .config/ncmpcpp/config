@@ -11,12 +11,12 @@ lines_scrolled = 5
 user_interface = alternative
 message_delay_time = 1
 volume_change_step = 5
-show_hidden_files_in_local_browser = no
+show_hidden_files_in_local_browser = yes
 
 # Appearance
 display_bitrate = yes
 progressbar_look = "━━╍"
-now_playing_prefix = "$b"
-now_playing_suffix = "$/b"
+now_playing_prefix = "$b$u"
+now_playing_suffix = "$/u$/b"
 playlist_disable_highlight_delay = 4
 

@@ -10,7 +10,6 @@ scrolling:
     history: 10000
     multiplier: 3
 
-# Font configuration (changes require restart)
 font:
     normal:
         family: monospace
@@ -22,20 +21,17 @@ font:
 
     italic:
         family: monospace
-        style: Italic
+        style: Oblique
 
     # Pt
-    size: 13.0
+    size: 12.0
 
-    # Offset is the extra space around each character. offset.y can be thought of
-    # as modifying the linespacing, and offset.x as modifying the letter spacing.
+    # Extra space around each character
     offset:
         x: 0
         y: 0
 
-    # Glyph offset determines the locations of the glyphs within their cells with
-    # the default being at the bottom. Increase the x offset to move the glyph to
-    # the right, increase the y offset to move the glyph upward.
+    # Glyph offset within character cell
     glyph_offset:
         x: 0
         y: 0
@@ -140,7 +136,7 @@ bell:
     animation: EaseOutExpo
     duration: 0
 
-background_opacity: 0.88
+background_opacity: 0.95
 
 # Mouse bindings
 #

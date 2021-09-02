@@ -18,11 +18,11 @@ function fish_prompt
   add_seg (set_color brblue; homeify $PWD)
 
   # git at the end
-  set -l branch (git symbolic-ref --short HEAD ^/dev/null)
+  set -l branch (git symbolic-ref --short HEAD 2>/dev/null)
   if [ "$branch" ]
     add_seg (set_color bryellow; echo -n " $branch")
   else
-    set -l commit (git rev-parse --short HEAD ^/dev/null)
+    set -l commit (git rev-parse --short HEAD 2>/dev/null)
     if [ "$commit" ]
       add_seg (set_color brgreen; echo -n "⚑ $commit")
     end
@@ -44,7 +44,7 @@ function fish_prompt
   end
 
   # print end
-  echo -ens (c_rst) "\n" (set_color brcyan) "  ◇ " (c_rst)
+  echo -ens (c_rst) "\n" (set_color brcyan) "  ▶ " (c_rst)
 
   set -e prompt_segs
 

@@ -1,0 +1,3 @@
+# vim: ft=sh:
+exec /usr/bin/pinentry-gnome3 "$@"
+

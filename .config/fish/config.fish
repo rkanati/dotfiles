@@ -1,12 +1,9 @@
 
-# make cd resolve symlinks, like fish pre-3.0
-#function cd
-#  if test (count $argv) -eq 0
-#    builtin cd
-#  else
-#    builtin cd (realpath $argv)
-#  end
+# kind of a terrible way of doing things; use stubs in ~/apps instead
+#if status is-login
+#    systemctl --user import-environment
 #end
 
-umask 027
+# now set by systemd-homed!
+#umask 027
 
